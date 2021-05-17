@@ -13,7 +13,7 @@ const ButtonAddRemoveHero = ({
   useEffect(() => {
     localStorage.setItem("teamHero", JSON.stringify(teamHero));
     teamHero.length === 6 ? setIsFull(true) : setIsFull(false);
-  }, [teamHero]);
+  }, [teamHero, setIsFull]);
   return (
     <>
       {teamHero

@@ -15,7 +15,7 @@ const HeroDetail = ({ isFull, setIsFull, teamHero, setTeamHero }) => {
         //console.log(currentHero);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [params.id]);
 
   return (
     <>
