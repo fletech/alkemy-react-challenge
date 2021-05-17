@@ -1,27 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { HeaderStyled } from "./styled";
 import styled from "styled-components";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-const Header = ({ isLogged, setIsLogged }) => {
+const Header = ({ toggleAside, setToggleAside, isLogged, setIsLogged }) => {
   return (
     <HeaderStyled>
-      <DivStyled>Hola</DivStyled>
+      <DivStyled>
+        {isLogged ? (
+          <div
+            onClick={() => setToggleAside(!toggleAside)}
+            className={`${
+              !toggleAside ? "toggle-aside on" : "toggle-aside off"
+            }`}
+          >
+            <i class="fas fa-angle-double-right"></i>
+          </div>
+        ) : (
+          ""
+        )}
+      </DivStyled>
       <NavStyled>
         <ul>
           {!isLogged && (
             <li>
-              <i class="fas fa-sign-in-alt"></i>
+              <i className="fas fa-sign-in-alt"></i>
             </li>
           )}
 
           {isLogged && (
             <>
               <li>
-                <i class="fas fa-search"></i>
+                <Link to="/search">
+                  <i className="fas fa-search"></i>
+                </Link>
               </li>
               <li>
-                <i class="fas fa-suitcase"></i>
+                <Link to="/">
+                  <i className="fas fa-suitcase"></i>
+                </Link>
               </li>
               <li
                 onClick={() => {
@@ -41,11 +58,39 @@ const Header = ({ isLogged, setIsLogged }) => {
 };
 
 const DivStyled = styled.div`
+  position: relative;
   width: 80%;
+  padding-left: 5vw;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  div.toggle-aside {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 1px 1px 6px #f0f0f0, -1px -1px 6px tomato;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 1rem;
+    left: -2rem;
+    z-index: 100;
+    cursor: pointer;
+    &.on {
+      left: 3rem;
+      transition: left 1s ease-in-out;
+      transform: rotate(180deg);
+    }
+    &.off {
+      transition: left 1s ease-in-out;
+    }
+    i {
+      color: tomato;
+    }
+  }
 `;
 const NavStyled = styled(DivStyled)`
   width: 20%;
@@ -61,6 +106,9 @@ const NavStyled = styled(DivStyled)`
       color: #474747;
       font-weight: 500;
       cursor: pointer;
+      a {
+        color: #474747;
+      }
     }
   }
 `;

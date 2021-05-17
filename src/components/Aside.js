@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Aside = ({ addRemove, teamHero, setTeamHero }) => {
+const Aside = ({ toggleAside, isLogged, addRemove, teamHero, setTeamHero }) => {
   return (
-    <AsideStyled>
+    <AsideStyled className={`${!isLogged || toggleAside ? "hidden" : ""}`}>
       {teamHero.length > 0 && (
         <DivImageContainer>
           {teamHero.map((hero) => {
@@ -29,13 +29,20 @@ const Aside = ({ addRemove, teamHero, setTeamHero }) => {
   );
 };
 const AsideStyled = styled.aside`
+  &.hidden,
+  &.toggle-hidden {
+    left: -20rem;
+  }
+  box-shadow: 4px 0px 20px #acacac;
   padding-top: 5rem;
   padding-left: 1rem;
   position: fixed;
   bottom: 0;
   height: 100vh;
-  width: 5vw;
-  background-color: #474747 !important;
+  left: 0vw;
+  width: 10vw;
+  background-color: rgba(12, 12, 12, 0.411) !important;
+  transition: all 0.5s ease-in-out;
 `;
 const DivHero = styled.div`
   height: 100%;

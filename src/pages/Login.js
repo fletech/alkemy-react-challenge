@@ -4,8 +4,11 @@ import InputField from "../components/InputField";
 import styled from "styled-components";
 import * as Yup from "yup";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Login = ({ setIsLogged }) => {
+  let history = useHistory();
+
   const validate = Yup.object({
     email: Yup.string().email("challenge@alkemy.org").required("Required"),
     password: Yup.string().min(5, "react").required("Required"),
@@ -22,8 +25,9 @@ const Login = ({ setIsLogged }) => {
       .then((result) => {
         localStorage.setItem("TOKEN_LOGIN", result.data.token);
         setIsLogged(true);
+        return history.push("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); //TOAST ERROR
   }, [values]);
 
   return (
