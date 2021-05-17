@@ -2,6 +2,7 @@ import React from "react";
 import { HeaderStyled } from "./styled";
 import styled from "styled-components";
 import { Link, Redirect } from "react-router-dom";
+import { shadowSpin } from "../utils";
 
 const Header = ({ toggleAside, setToggleAside, isLogged, setIsLogged }) => {
   return (
@@ -80,6 +81,7 @@ const DivStyled = styled.div`
     left: -2rem;
     z-index: 100;
     cursor: pointer;
+
     @media (max-width: 500px) {
       left: -0.2rem;
       &.on {
@@ -94,28 +96,12 @@ const DivStyled = styled.div`
     }
     &.off {
       transition: left 1s ease-in-out;
-      animation: shadow-spin 2s infinite;
+      animation: shadow-spin 2s infinite ease-in-out;
     }
     i {
       color: tomato;
     }
-    @keyframes shadow-spin {
-      0% {
-        box-shadow: -2px -2px 6px #eef77d;
-      }
-      25% {
-        box-shadow: -1px -1px 8px #fa983c;
-      }
-      50% {
-        box-shadow: 0px 0px 8px #ee4034;
-      }
-      75% {
-        box-shadow: 1px 1px 8px #fa983c;
-      }
-      100% {
-        box-shadow: 2px 2px 6px #eef77d;
-      }
-    }
+    ${shadowSpin}
   }
 `;
 const NavStyled = styled(DivStyled)`

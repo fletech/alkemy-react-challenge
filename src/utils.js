@@ -39,3 +39,38 @@ export const addRemove = ({ e, teamHero, setTeamHero }) => {
 
 //Base URL
 export const url = `https://www.superheroapi.com/api.php/${process.env.REACT_APP_ACCESS_TOKEN_API}/`;
+export const shadowSpin = `@keyframes shadow-spin {
+      0% {
+        box-shadow: -2px -2px 6px #eef77d;
+      }
+      25% {
+        box-shadow: -1px -1px 8px #fa983c;
+      }
+      50% {
+        box-shadow: 0px 0px 8px #ee4034;
+      }
+      75% {
+        box-shadow: 1px 1px 8px #fa983c;
+      }
+      100% {
+        box-shadow: 2px 2px 6px #eef77d;
+      }
+    }`;
+
+export const breathe = `@keyframes breathe {
+      10% {
+        transform: scale(2);
+      }
+      25% {
+        transform: scale(1.4);
+      }
+      50% {
+       transform: scale(1.8);
+      }
+      75% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1.3);
+      }
+    }`;

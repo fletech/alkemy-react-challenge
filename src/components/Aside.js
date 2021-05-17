@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { breathe, shadowSpin } from "../utils";
 import ButtonAddRemoveHero from "./ButtonAddHero";
 
 const Aside = ({
@@ -23,6 +24,7 @@ const Aside = ({
                   <div>
                     <img src={hero.image.url} alt={hero.name} />
                     <ButtonAddRemoveHero
+                      className="selected-breathe"
                       setIsFull={setIsFull}
                       hero={hero}
                       isFull={isFull}
@@ -75,6 +77,13 @@ const DivHero = styled.div`
       height: 100%;
       border-radius: 50%;
     }
+    .selected-breathe {
+      ${breathe};
+      i svg {
+        animation: shadow-spin 3s ease-in-out;
+        ${shadowSpin}
+      }
+    }
     button {
       width: 20px;
       height: 20px;
@@ -85,6 +94,7 @@ const DivHero = styled.div`
       top: -5px;
       right: -10px;
       background: none;
+      animation: breathe 3s ease-in-out;
       i {
         color: tomato;
         cursor: pointer;

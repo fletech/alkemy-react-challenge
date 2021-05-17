@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { addRemove } from "../utils";
+import { addRemove, shadowSpin } from "../utils";
 
 const SearchResult = ({
   isFull,
@@ -98,7 +98,8 @@ const Hero = styled.div`
     }
   }
   &.hero-added {
-    box-shadow: 2px 2px 8px #f7c3b9, -2px -2px 8px #f7c3b9;
+    animation: shadow-spin 1s infinite ease-in-out;
+    ${shadowSpin}
     background-color: tomato;
     i,
     p {
