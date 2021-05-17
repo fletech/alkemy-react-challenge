@@ -5,10 +5,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
+let token = localStorage.getItem("TOKEN_LOGIN") !== null ? true : false;
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <App token={token} />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

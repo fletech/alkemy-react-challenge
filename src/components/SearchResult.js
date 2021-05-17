@@ -14,7 +14,7 @@ const SearchResult = ({
   useEffect(() => {
     localStorage.setItem("teamHero", JSON.stringify(teamHero));
     teamHero.length === 6 ? setIsFull(true) : setIsFull(false);
-  }, [teamHero, setIsFull]);
+  }, [teamHero]);
 
   return (
     <SearchResultStyled>
@@ -28,39 +28,41 @@ const SearchResult = ({
             })
             .indexOf(true) === -1 ? (
             <Hero key={heroResult.id} className="hero-to-add">
-              <Link>
-                <div>
-                  <img src={heroResult.image.url} alt={heroResult.name} />
-                </div>
-                <p>{heroResult.name}</p>
-                {/* <p>Intelligence: {heroResult.powerstats.intelligence}</p> */}
+              <div>
+                <img src={heroResult.image.url} alt={heroResult.name} />
+              </div>
+              <p>{heroResult.name}</p>
+              {/* <p>Intelligence: {heroResult.powerstats.intelligence}</p> */}
 
-                <button
-                  onClick={(e) => addRemove({ e, teamHero, setTeamHero })}
-                  data-id={heroResult.id}
-                  data-hero={JSON.stringify(heroResult)}
-                  className={isFull ? "disabled" : "active"}
-                >
-                  <i class="far fa-heart"></i>
-                </button>
+              <button
+                onClick={(e) => addRemove({ e, teamHero, setTeamHero })}
+                data-id={heroResult.id}
+                data-hero={JSON.stringify(heroResult)}
+                className={isFull ? "disabled" : "active"}
+              >
+                <i className="far fa-heart"></i>
+              </button>
+              <Link to={`/hero-detail/${heroResult.id}`}>
+                <i className="fas fa-info-circle"></i>
               </Link>
             </Hero>
           ) : (
             <Hero key={heroResult.id} className="hero-added">
-              <Link>
-                <div>
-                  <img src={heroResult.image.url} alt={heroResult.name} />
-                </div>
-                <p>{heroResult.name}</p>
-                {/* <p>Intelligence: {heroResult.powerstats.intelligence}</p> */}
+              <div>
+                <img src={heroResult.image.url} alt={heroResult.name} />
+              </div>
+              <p>{heroResult.name}</p>
+              {/* <p>Intelligence: {heroResult.powerstats.intelligence}</p> */}
 
-                <button
-                  onClick={(e) => addRemove({ e, teamHero, setTeamHero })}
-                  data-id={heroResult.id}
-                  data-hero={JSON.stringify(heroResult)}
-                >
-                  <i class="fas fa-heart"></i>
-                </button>
+              <button
+                onClick={(e) => addRemove({ e, teamHero, setTeamHero })}
+                data-id={heroResult.id}
+                data-hero={JSON.stringify(heroResult)}
+              >
+                <i className="fas fa-trash"></i>
+              </button>
+              <Link to={`/hero-detail/${heroResult.id}`}>
+                <i className="fas fa-info-circle"></i>
               </Link>
             </Hero>
           );
@@ -84,7 +86,7 @@ const Hero = styled.div`
   border: solid 1px #d6d4d4;
   border-radius: 10px;
   margin: 1rem;
-  a div {
+  div {
     width: 80px;
     height: 80px;
     overflow: hidden;
@@ -123,7 +125,8 @@ const Hero = styled.div`
   button {
     background: none;
     border: none;
-    i.fa-heart {
+    i.fa-heart,
+    i.fa-trash {
       pointer-events: none;
     }
     &.disabled {
@@ -133,6 +136,13 @@ const Hero = styled.div`
     &.active {
       color: tomato;
       cursor: pointer;
+    }
+  }
+  //Link as "a"
+  a {
+    margin-left: 10px;
+    i {
+      color: #474747;
     }
   }
 `;

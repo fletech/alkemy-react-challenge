@@ -8,7 +8,7 @@ export const useStateWithLocalStorage = (localStorageKey) => {
 
   useEffect(() => {
     localStorage.setItem(localStorageKey, JSON.stringify(teamHero));
-  }, [teamHero]);
+  }, [teamHero, localStorageKey]);
 
   return [teamHero, setTeamHero];
 };
@@ -16,8 +16,11 @@ export const useStateWithLocalStorage = (localStorageKey) => {
 //addRemoveHeroHanderl
 export const addRemove = ({ e, teamHero, setTeamHero }) => {
   let idClicked = e.target.dataset.id;
-
-  let heroAdded = JSON.parse(e.target.dataset.hero);
+  console.log(idClicked);
+  let heroData = e.target.dataset.hero;
+  console.log(e.target.dataset);
+  let heroAdded =
+    typeof heroData !== "string" ? heroData : JSON.parse(heroData);
 
   if (teamHero.length === 0) {
     setTeamHero([...teamHero, heroAdded]);

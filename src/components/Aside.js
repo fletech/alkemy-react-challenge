@@ -1,26 +1,39 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import ButtonAddRemoveHero from "./ButtonAddHero";
 
-const Aside = ({ toggleAside, isLogged, addRemove, teamHero, setTeamHero }) => {
+const Aside = ({
+  isFull,
+  setIsFull,
+  toggleAside,
+  isLogged,
+  addRemove,
+  teamHero,
+  setTeamHero,
+}) => {
   return (
     <AsideStyled className={`${!isLogged || toggleAside ? "hidden" : ""}`}>
       {teamHero.length > 0 && (
         <DivImageContainer>
           {teamHero.map((hero) => {
             return (
-              <DivHero>
-                <div>
-                  <img src={hero.image.url} alt={hero.name} />
-                  <button
-                    onClick={(e) => addRemove({ e, teamHero, setTeamHero })}
-                    data-id={hero.id}
-                    data-hero={JSON.stringify(hero)}
-                  >
-                    <i class="fas fa-heart"></i>
-                  </button>
-                </div>
-                {/* <p>{hero.name}</p> */}
-              </DivHero>
+              <Link to={`/hero-detail/${hero.id}`}>
+                <DivHero key={hero.id}>
+                  <div>
+                    <img src={hero.image.url} alt={hero.name} />
+                    <ButtonAddRemoveHero
+                      setIsFull={setIsFull}
+                      hero={hero}
+                      isFull={isFull}
+                      teamHero={teamHero}
+                      setTeamHero={setTeamHero}
+                      iconSecondary="fas fa-heart"
+                    />
+                  </div>
+                  {/* <p>{hero.name}</p> */}
+                </DivHero>
+              </Link>
             );
           })}
         </DivImageContainer>
@@ -41,6 +54,7 @@ const AsideStyled = styled.aside`
   height: 100vh;
   left: 0vw;
   width: 10vw;
+  min-width: 150px;
   background-color: rgba(12, 12, 12, 0.411) !important;
   transition: all 0.5s ease-in-out;
 `;

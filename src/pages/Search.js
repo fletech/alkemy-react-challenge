@@ -1,10 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router";
 import InputSearch from "../components/InputSearch";
 import SearchResult from "../components/SearchResult";
 
 const Search = ({
-  isLogged,
   isFull,
   setIsFull,
   resultSearching,
@@ -14,10 +12,6 @@ const Search = ({
   teamHero,
   setTeamHero,
 }) => {
-  let history = useHistory();
-  if (!isLogged) {
-    return history.push("/login");
-  }
   return (
     <>
       <InputSearch

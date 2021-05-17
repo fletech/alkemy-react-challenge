@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Formik, Form } from "formik";
 import InputField from "../components/InputField";
 import styled from "styled-components";
@@ -14,12 +14,10 @@ const Login = ({ setIsLogged }) => {
     password: Yup.string().min(5, "react").required("Required"),
   });
   //states
-  const [values, setValues] = useState({});
 
-  //useEffect
-  useEffect(() => {
+  //handlers
+  const loginHandler = (values) => {
     const body = { email: values.email, password: values.password };
-    console.log(body);
     axios
       .post("http://challenge-react.alkemy.org/", body)
       .then((result) => {
@@ -28,7 +26,7 @@ const Login = ({ setIsLogged }) => {
         return history.push("/");
       })
       .catch((err) => console.log(err)); //TOAST ERROR
-  }, [values]);
+  };
 
   return (
     <Formik
@@ -37,9 +35,7 @@ const Login = ({ setIsLogged }) => {
         password: "",
       }}
       validationSchema={validate}
-      onSubmit={(values) => {
-        setValues(values);
-      }}
+      onSubmit={(values) => loginHandler(values)}
     >
       {(formik) => (
         <>

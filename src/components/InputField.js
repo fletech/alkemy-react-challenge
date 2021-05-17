@@ -3,7 +3,8 @@ import { ErrorMessage, useField } from "formik";
 import styled from "styled-components";
 
 const InputField = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
+  //const [field, meta] = useField(props);
+  const [field] = useField(props);
   return (
     <>
       <label htmlFor={field.name}>{label}</label>

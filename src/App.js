@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 //React-router
-import {
-  Route,
-  Switch,
-  useLocation,
-  Redirect,
-  useHistory,
-} from "react-router-dom";
+import { Route, Switch, useLocation, Redirect } from "react-router-dom";
 //utils
 import { useStateWithLocalStorage, addRemove, url } from "./utils";
 
@@ -21,27 +15,23 @@ import { SectionStyled } from "./components/styled";
 import Aside from "./components/Aside";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import HeroDetail from "./pages/HeroDetail";
 
 ///RENDER///
-function App() {
+function App({ token }) {
   //Location - Routing:
   const location = useLocation();
-  let history = useHistory();
-
+  //console.log(token);
   //State:
   const [teamHero, setTeamHero] = useStateWithLocalStorage("teamHero");
   const [searchValue, setSearchValue] = useState("");
   const [resultSearching, setResultSearching] = useState();
   const [isFull, setIsFull] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(token);
   const [toggleAside, setToggleAside] = useState(true);
+  //console.log(isLogged);
 
   //Use Effect:
-  useEffect(() => {
-    if (localStorage.getItem("TOKEN_LOGIN")) {
-      setIsLogged(true);
-    }
-  }, []);
 
   return (
     <div className="App">
@@ -57,23 +47,20 @@ function App() {
         addRemove={addRemove}
         teamHero={teamHero}
         setTeamHero={setTeamHero}
+        setIsFull={setIsFull}
+        isFull={isFull}
       />
       <MainStyled>
         <SectionStyled>
           <Switch location={location} key={location.pathname}>
             {isLogged ? (
               <>
-                <Route path={"/"} exact>
-                  <Home isLogged={isLogged} />
+                <Route path="/" exact>
+                  <Home />
                 </Route>
 
-                <Route path="/login">
-                  <Redirect to="/" />
-                </Route>
-
-                <Route path="/search">
+                <Route path="/search" exact>
                   <Search
-                    isLogged={isLogged}
                     isFull={isFull}
                     setIsFull={setIsFull}
                     resultSearching={resultSearching}
@@ -85,21 +72,24 @@ function App() {
                     url={url}
                   />
                 </Route>
+
+                <Route path="/hero-detail/:id">
+                  <HeroDetail
+                    isFull={isFull}
+                    setIsFull={setIsFull}
+                    teamHero={teamHero}
+                    setTeamHero={setTeamHero}
+                  />
+                </Route>
               </>
             ) : (
               <>
                 <Route path="/">
                   <Redirect to="/login" />
+                </Route>
+                <Route path="/login" exact>
                   <Login setIsLogged={setIsLogged} />
                 </Route>
-                {/*<Route path="/login">
-                  <Redirect to="/login" />
-                  <Login setIsLogged={setIsLogged} />
-                </Route>
-                 <Route path="/search">
-                  <Redirect to="/login" />
-                  <Login setIsLogged={setIsLogged} />
-                </Route> */}
               </>
             )}
           </Switch>
