@@ -29,6 +29,8 @@ function App({ token }) {
   const [isFull, setIsFull] = useState(false);
   const [isLogged, setIsLogged] = useState(token);
   const [toggleAside, setToggleAside] = useState(true);
+  const [resultNull, setResultNull] = useState(false);
+
   //console.log(isLogged);
 
   //Use Effect:
@@ -70,6 +72,8 @@ function App({ token }) {
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
                     url={url}
+                    resultNull={resultNull}
+                    setResultNull={setResultNull}
                   />
                 </Route>
 

@@ -8,6 +8,7 @@ const ButtonAddRemoveHero = ({
   teamHero,
   setTeamHero,
   icon,
+  iconCustom,
   ...props
 }) => {
   useEffect(() => {
@@ -27,7 +28,7 @@ const ButtonAddRemoveHero = ({
           data-hero={JSON.stringify(hero)}
           className={isFull ? "disabled" : "active"}
         >
-          <i className={icon}></i>
+          <i className={icon || iconCustom}></i>
         </button>
       ) : (
         <button

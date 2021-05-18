@@ -11,6 +11,8 @@ const Search = ({
   setSearchValue,
   teamHero,
   setTeamHero,
+  resultNull,
+  setResultNull,
 }) => {
   return (
     <>
@@ -18,6 +20,7 @@ const Search = ({
         setSearchValue={setSearchValue}
         searchValue={searchValue}
         setResultSearching={setResultSearching}
+        setResultNull={setResultNull}
       />
       <SearchResult
         isFull={isFull}
@@ -25,6 +28,7 @@ const Search = ({
         resultSearching={resultSearching}
         teamHero={teamHero}
         setTeamHero={setTeamHero}
+        resultNull={resultNull}
       />
     </>
   );

@@ -15,7 +15,11 @@ const Header = ({ toggleAside, setToggleAside, isLogged, setIsLogged }) => {
               !toggleAside ? "toggle-aside on" : "toggle-aside off"
             }`}
           >
-            <i className="fas fa-angle-double-right"></i>
+            {toggleAside ? (
+              <i className="fas fa-bars"></i>
+            ) : (
+              <i className="fas fa-angle-double-right"></i>
+            )}
           </div>
         ) : (
           ""
@@ -38,7 +42,7 @@ const Header = ({ toggleAside, setToggleAside, isLogged, setIsLogged }) => {
               </li>
               <li key="wallet">
                 <Link to="/">
-                  <i className="fas fa-suitcase"></i>
+                  <i className="fas fa-folder"></i>
                 </Link>
               </li>
               <li
@@ -76,10 +80,10 @@ const DivStyled = styled.div`
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    position: absolute;
+    position: fixed;
     top: 1.3rem;
-    left: -2rem;
-    z-index: 100;
+    left: 0.1rem;
+    z-index: 200;
     cursor: pointer;
 
     @media (max-width: 500px) {
@@ -89,10 +93,11 @@ const DivStyled = styled.div`
       }
     }
     &.on {
-      left: 3rem;
+      left: 10rem;
       transition: left 1s ease-in-out;
       transform: rotate(180deg);
       box-shadow: 1px 1px 6px tomato, -1px -1px 6px #dae905;
+      z-index: 200;
     }
     &.off {
       transition: left 1s ease-in-out;

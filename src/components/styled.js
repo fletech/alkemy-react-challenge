@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 10vh;
   background-color: #f7f7f7;
@@ -14,7 +17,7 @@ export const SectionStyled = styled.section`
   align-items: center;
   justify-content: flex-start;
   min-height: 90vh;
-  padding-top: 10vh;
+  padding-top: 15vh;
   width: 100%;
   background-color: #fff;
 `;

@@ -19,23 +19,23 @@ const Aside = ({
         <DivImageContainer>
           {teamHero.map((hero) => {
             return (
-              <Link to={`/hero-detail/${hero.id}`}>
-                <DivHero key={hero.id}>
-                  <div>
+              <DivHero key={hero.id}>
+                <div>
+                  <Link to={`/hero-detail/${hero.id}`}>
                     <img src={hero.image.url} alt={hero.name} />
-                    <ButtonAddRemoveHero
-                      className="selected-breathe"
-                      setIsFull={setIsFull}
-                      hero={hero}
-                      isFull={isFull}
-                      teamHero={teamHero}
-                      setTeamHero={setTeamHero}
-                      iconSecondary="fas fa-heart"
-                    />
-                  </div>
-                  {/* <p>{hero.name}</p> */}
-                </DivHero>
-              </Link>
+                  </Link>
+                  <ButtonAddRemoveHero
+                    className="selected-breathe"
+                    setIsFull={setIsFull}
+                    hero={hero}
+                    isFull={isFull}
+                    teamHero={teamHero}
+                    setTeamHero={setTeamHero}
+                    iconSecondary="fas fa-heart"
+                  />
+                </div>
+                {/* <p>{hero.name}</p> */}
+              </DivHero>
             );
           })}
         </DivImageContainer>

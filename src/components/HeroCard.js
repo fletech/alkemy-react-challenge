@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ButtonAddRemoveHero from "./ButtonAddHero";
+import { loopAnObject, shadowSpin } from "../utils";
 
 const HeroCard = ({
   hero,
@@ -13,55 +14,74 @@ const HeroCard = ({
   children,
   setIsFull,
   icon,
+  iconCustom,
 }) => {
-  console.log(hero);
+  let average = loopAnObject(hero.powerstats);
   return (
     //classNames: "hero-to-add" || "hero-added"
     <Hero key={hero.id} className={className}>
-      <div>
-        <img src={hero.image.url} alt={hero.name} />
+      <div className="header">
+        <div className="image">
+          <img src={hero.image.url} alt={hero.name} />
+        </div>
+        <div className="average">
+          <p>Points: </p>
+          <small>{average}</small>
+        </div>
       </div>
       <p>{hero.name}</p>
 
       {children}
 
-      <ButtonAddRemoveHero
-        setIsFull={setIsFull}
-        hero={hero}
-        isFull={isFull}
-        teamHero={teamHero}
-        setTeamHero={setTeamHero}
-        icon={icon}
-      />
-      {iconInfo && (
-        <Link to={`/hero-detail/${hero.id}`}>
-          <i className={iconInfo}></i>
-        </Link>
-      )}
+      <div className="buttons">
+        <ButtonAddRemoveHero
+          setIsFull={setIsFull}
+          hero={hero}
+          isFull={isFull}
+          teamHero={teamHero}
+          setTeamHero={setTeamHero}
+          icon={icon}
+          iconCustom={iconCustom}
+        />
+        {iconInfo && (
+          <Link to={`/hero-detail/${hero.id}`}>
+            <i className={iconInfo}></i>
+          </Link>
+        )}
+      </div>
     </Hero>
   );
 };
 
 const Hero = styled.div`
   padding: 1rem;
-  height: 200px;
-  width: 200px;
+  height: auto;
+  min-width: 200px;
   border: solid 1px #d6d4d4;
   border-radius: 10px;
   margin: 1rem;
-  div {
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-    border-radius: 40px;
-    object-fit: cover;
+  div.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+    div.image {
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      border-radius: 50%;
+      object-fit: cover;
 
-    img {
-      width: 100%;
+      img {
+        width: 100%;
+      }
     }
   }
+
   &.hero-added {
-    box-shadow: 2px 2px 8px #f7c3b9, -2px -2px 8px #f7c3b9;
+    animation: shadow-spin 1s infinite ease-in-out;
+    ${shadowSpin}
     background-color: tomato;
     i,
     p {
@@ -72,10 +92,7 @@ const Hero = styled.div`
     }
   }
   &.hero-to-add {
-    p {
-      pointer-events: none;
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
   a {
     text-decoration: none;
@@ -84,12 +101,15 @@ const Hero = styled.div`
   p {
     font-weight: bold;
   }
+  div.buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
   button {
-    cursor: pointer;
     background: none;
     border: none;
-    i.fa-heart,
-    i.fa-trash {
+    i {
       pointer-events: none;
     }
     &.disabled {

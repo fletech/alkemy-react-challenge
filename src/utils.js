@@ -39,6 +39,8 @@ export const addRemove = ({ e, teamHero, setTeamHero }) => {
 
 //Base URL
 export const url = `https://www.superheroapi.com/api.php/${process.env.REACT_APP_ACCESS_TOKEN_API}/`;
+
+//Animations
 export const shadowSpin = `@keyframes shadow-spin {
       0% {
         box-shadow: -2px -2px 6px #eef77d;
@@ -74,3 +76,15 @@ export const breathe = `@keyframes breathe {
         transform: scale(1.3);
       }
     }`;
+
+//Loop
+export const loopAnObject = (object) => {
+  let sum = 0;
+  for (const key in object) {
+    if (object[key] === (null || "null")) {
+      object[key] = 0;
+    }
+    sum += parseInt(object[key]);
+  }
+  return sum;
+};
