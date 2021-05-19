@@ -30,13 +30,22 @@ function App({ token }) {
   const [isLogged, setIsLogged] = useState(token);
   const [toggleAside, setToggleAside] = useState(true);
   const [resultNull, setResultNull] = useState(false);
+  const [inputFocused, setFocus] = useState(false);
 
   //console.log(isLogged);
 
   //Use Effect:
 
+  //Handlers:
+
+  const inputFocusHandler = (e) => {
+    if (e.target.className !== "input-search" && searchValue.length !== 0) {
+      setFocus(false);
+    }
+  };
+
   return (
-    <div className="App">
+    <div className="App" onClick={inputFocusHandler}>
       <Header
         setToggleAside={setToggleAside}
         toggleAside={toggleAside}
@@ -74,6 +83,8 @@ function App({ token }) {
                     url={url}
                     resultNull={resultNull}
                     setResultNull={setResultNull}
+                    inputFocused={inputFocused}
+                    setFocus={setFocus}
                   />
                 </Route>
 

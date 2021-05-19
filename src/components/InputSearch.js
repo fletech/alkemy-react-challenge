@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { url } from "../utils";
 import styled from "styled-components";
@@ -12,22 +12,21 @@ const InputSearch = ({
   searchValue,
   setResultSearching,
   setResultNull,
+  inputFocused,
+  setFocus,
 }) => {
   //handlers
+
   const resultHandler = (e) => {
-    setSearchValue(e.target.value);
-  };
-  //useState
-  const [inputFocused, setFocus] = useState(false);
-  //Use effect
-  useEffect(() => {
+    e.preventDefault();
     axios
       .get(`${url}/search/${searchValue}`)
       .then((response) => {
+        setResultNull(false);
+        console.log(response.data.results);
         if (response.data.results === undefined) {
           setResultNull(true);
         }
-        setResultNull(false);
         setResultSearching(response.data.results);
       })
       .catch(function (error) {
@@ -40,7 +39,9 @@ const InputSearch = ({
         }
         console.log(error.config);
       });
-  }, [searchValue, setResultSearching, setResultNull]);
+  };
+  //useState
+
   return (
     <>
       {/* <Formik>
@@ -56,28 +57,40 @@ const InputSearch = ({
           </Form>;
         }}
       </Formik> */}
+      <form onSubmit={resultHandler}>
+        <InputStyled className={inputFocused ? "focus" : ""}>
+          <input
+            type="text"
+            value={searchValue}
+            className="input-search"
+            onChange={(e) => setSearchValue(e.target.value)}
+            onFocus={() => {
+              setResultNull(false);
+              setFocus(true);
+            }}
+            onEmptied={() => setSearchValue("")}
+            onPointerCancel={() => {
+              setFocus(false);
+            }}
+          />
+          {searchValue.length !== 0 && (
+            <button
+              type="reset"
+              onClick={() => {
+                setSearchValue("");
+                setResultSearching();
+                setResultNull(false);
+              }}
+            >
+              <i className="far fa-times-circle "></i>
+            </button>
+          )}
 
-      <InputStyled className={inputFocused ? "focus" : ""}>
-        <i className="fas fa-search "></i>
-        <input
-          type="text"
-          value={searchValue}
-          onChange={(e) => resultHandler(e)}
-          onFocus={() => {
-            setFocus(true);
-          }}
-          onEmptied={() => setSearchValue("")}
-          onPointerCancel={() => {
-            setFocus(false);
-          }}
-
-          // onSelect={(e) =>
-          //   searchValue.length !== 0
-          //     ? setSearchValue(e.target.value)
-          //     : setSearchValue("")
-          // }
-        />
-      </InputStyled>
+          <button type="submit">
+            <i className="fas fa-search "></i>
+          </button>
+        </InputStyled>
+      </form>
     </>
   );
 };
@@ -91,18 +104,28 @@ const InputStyled = styled.div`
   width: 350px;
   height: 2rem;
   min-width: 300px;
+  position: relative;
   &.focus {
     border-bottom: solid 2px tomato;
   }
-  i {
-    color: #474747;
+  button {
+    border: none;
+    background: none;
+    margin: 0 0.5rem;
+    i {
+      color: #474747;
+    }
+    &:hover {
+      cursor: pointer;
+    }
   }
   input {
     border: none;
     flex: 1;
     height: 100%;
     outline: none;
-    padding-left: 1rem;
+    padding-left: 0.3rem;
+    padding-right: 1rem;
   }
 `;
 export default InputSearch;
