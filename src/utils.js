@@ -16,9 +16,9 @@ export const useStateWithLocalStorage = (localStorageKey) => {
 //addRemoveHeroHanderl
 export const addRemove = ({ e, teamHero, setTeamHero }) => {
   let idClicked = e.target.dataset.id;
-  console.log(idClicked);
+  //console.log(idClicked);
   let heroData = e.target.dataset.hero;
-  console.log(e.target.dataset);
+  //console.log(e.target.dataset);
   let heroAdded =
     typeof heroData !== "string" ? heroData : JSON.parse(heroData);
 

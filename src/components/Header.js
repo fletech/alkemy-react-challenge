@@ -4,23 +4,63 @@ import styled from "styled-components";
 import { Link, Redirect } from "react-router-dom";
 import { shadowSpin } from "../utils";
 
+//Icons
+import SvgIcon from "@material-ui/core/SvgIcon";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
+import BatteryChargingFullIcon from "@material-ui/icons/BatteryChargingFull";
+import SpeedIcon from "@material-ui/icons/Speed";
+import { ReactComponent as BrainIcon } from "../images/brain.svg";
+import { ReactComponent as AxeIcon } from "../images/axe.svg";
+import { ReactComponent as HeartIcon } from "../images/heartbeat.svg";
+
 const Header = ({ toggleAside, setToggleAside, isLogged, setIsLogged }) => {
   return (
     <HeaderStyled>
       <DivStyled>
         {isLogged ? (
-          <div
-            onClick={() => setToggleAside(!toggleAside)}
-            className={`${
-              !toggleAside ? "toggle-aside on" : "toggle-aside off"
-            }`}
-          >
-            {toggleAside ? (
-              <i className="fas fa-bars"></i>
-            ) : (
-              <i className="fas fa-angle-double-right"></i>
-            )}
-          </div>
+          <>
+            <div
+              onClick={() => setToggleAside(!toggleAside)}
+              className={`${
+                !toggleAside ? "toggle-aside on" : "toggle-aside off"
+              }`}
+            >
+              {toggleAside ? (
+                <i className="fas fa-bars"></i>
+              ) : (
+                <i className="fas fa-angle-double-right"></i>
+              )}
+            </div>
+            <section>
+              <div className="stat-heading">
+                <p>My team stats</p>
+              </div>
+              <div className="stat-rate intelligence">
+                <SvgIcon>
+                  <BrainIcon />
+                </SvgIcon>
+              </div>
+              <div className="stat-rate combat">
+                <SvgIcon>
+                  <AxeIcon />
+                </SvgIcon>
+              </div>
+              <div className="stat-rate power">
+                <BatteryChargingFullIcon />
+              </div>
+              <div className="stat-rate speed">
+                <SpeedIcon />
+              </div>
+              <div className="stat-rate strength">
+                <FitnessCenterIcon />
+              </div>
+              <div className="stat-rate durability">
+                <SvgIcon>
+                  <HeartIcon />
+                </SvgIcon>
+              </div>
+            </section>
+          </>
         ) : (
           ""
         )}
@@ -71,6 +111,25 @@ const DivStyled = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  section {
+    display: flex;
+    background-color: #e2e2e2;
+    height: 3rem;
+    align-items: center;
+    border-radius: 2rem;
+    div.stat-heading {
+      margin-left: 1rem;
+      p {
+        font-size: 0.7rem;
+        padding-bottom: 0.2rem;
+      }
+    }
+    svg {
+      color: tomato;
+      margin: 0 1rem;
+      font-size: 1.3rem;
+    }
+  }
   div.toggle-aside {
     display: flex;
     align-items: center;

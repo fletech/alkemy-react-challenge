@@ -17,7 +17,6 @@ const Search = ({
   inputFocused,
   setFocus,
 }) => {
-  console.log(resultSearching);
   return (
     <SearchStyled>
       {/* {!resultNull ? (
@@ -34,6 +33,7 @@ const Search = ({
           setResultNull={setResultNull}
           inputFocused={inputFocused}
           setFocus={setFocus}
+          resultNull={resultNull}
         />
 
         {searchValue.length !== 0 ? (
@@ -74,13 +74,14 @@ const SearchStyled = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      border: solid 0.1rem #474747;
-      color: #474747;
-      height: 2rem;
+      background-color: #474747;
+      color: #ffffff;
+      height: 3rem;
       width: 350px;
       min-width: 300px;
-      border-radius: 1rem;
+      border-radius: 2rem;
       padding: 0.3rem 0.5rem;
+      margin: 2rem 0;
     }
     p.search-message {
       color: tomato;

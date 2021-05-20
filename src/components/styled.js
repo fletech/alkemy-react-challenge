@@ -25,5 +25,15 @@ export const SectionStyled = styled.section`
 export const FooterStyled = styled.footer`
   width: 100%;
   height: 5vh;
-  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  position: fixed;
+  bottom: 0;
+  a {
+    margin: 0 0.5rem;
+    text-decoration: none;
+    color: orange;
+  }
 `;

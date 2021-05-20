@@ -31,6 +31,7 @@ function App({ token }) {
   const [toggleAside, setToggleAside] = useState(true);
   const [resultNull, setResultNull] = useState(false);
   const [inputFocused, setFocus] = useState(false);
+  const [stats, setStats] = useState();
 
   //console.log(isLogged);
 

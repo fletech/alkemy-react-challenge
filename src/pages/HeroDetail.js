@@ -176,37 +176,6 @@ const HeroDetail = ({ isFull, setIsFull, teamHero, setTeamHero }) => {
                       : "0"}
                   </small>
                 </div>
-
-                {/* <small>
-                  Combat:{" "}
-                  {currentHero.powerstats.combat !== "null"
-                    ? currentHero.powerstats.combat
-                    : "0"}
-                </small>
-                <small>
-                  Durability:{" "}
-                  {currentHero.powerstats.durability !== "null"
-                    ? currentHero.powerstats.durability
-                    : "0"}
-                </small>
-                <small>
-                  Power:{" "}
-                  {currentHero.powerstats.power !== "null"
-                    ? currentHero.powerstats.power
-                    : "0"}
-                </small>
-                <small>
-                  Speed:{" "}
-                  {currentHero.powerstats.speed !== "null"
-                    ? currentHero.powerstats.speed
-                    : "0"}
-                </small>
-                <small>
-                  Strength:{" "}
-                  {currentHero.powerstats.strength !== "null"
-                    ? currentHero.powerstats.strength
-                    : "0"}
-                </small> */}
               </div>
             </ChildrenStyled>
           </HeroCardStyled>
