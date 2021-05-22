@@ -16,16 +16,20 @@ const Aside = ({
   return (
     <AsideStyled className={`${!isLogged || toggleAside ? "hidden" : ""}`}>
       <div className="aside-header">
-        <div
-          onClick={() => setToggleAside(!toggleAside)}
-          className={`${!toggleAside ? "toggle-aside on" : "toggle-aside off"}`}
-        >
-          {toggleAside ? (
-            <i className="fas fa-bars"></i>
-          ) : (
-            <i className="fas fa-times"></i>
-          )}
-        </div>
+        {isLogged && (
+          <div
+            onClick={() => setToggleAside(!toggleAside)}
+            className={`${
+              !toggleAside ? "toggle-aside on" : "toggle-aside off"
+            }`}
+          >
+            {toggleAside ? (
+              <i className="fas fa-bars"></i>
+            ) : (
+              <i className="fas fa-times"></i>
+            )}
+          </div>
+        )}
       </div>
 
       {teamHero.length > 0 && (

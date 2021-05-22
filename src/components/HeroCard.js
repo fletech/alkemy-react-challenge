@@ -25,11 +25,11 @@ const HeroCard = ({
           <img src={hero.image.url} alt={hero.name} />
         </div>
         <div className="average">
-          <p>Points: </p>
-          <small>{average}</small>
+          <small>Points: </small>
+          <h2>{average}</h2>
         </div>
       </div>
-      <p>{hero.name}</p>
+      <h4 className="name">{hero.name}</h4>
 
       {children}
 
@@ -84,7 +84,9 @@ const Hero = styled.div`
     ${shadowSpin}
     background-color: tomato;
     i,
-    p {
+    h3,
+    h2,
+    h4 {
       color: white;
     }
     button {
@@ -98,7 +100,7 @@ const Hero = styled.div`
     text-decoration: none;
     color: #474747;
   }
-  p {
+  h3.name {
     font-weight: bold;
   }
   div.buttons {

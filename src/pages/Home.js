@@ -9,10 +9,10 @@ const Home = ({ stats, teamHero, setTeamHero, isFull, setIsFull }) => {
   return (
     <HomeStyled>
       {teamHero.length === 0 ? (
-        <p>
+        <h3 className="home-heading">
           You have not added any hero yet. To seek for one{" "}
           <Link to="/search">click here!</Link>
-        </p>
+        </h3>
       ) : (
         <>
           <div className="home-cards">
@@ -28,7 +28,11 @@ const Home = ({ stats, teamHero, setTeamHero, isFull, setIsFull }) => {
               />
             ))}
           </div>
-          <div className="home-info"></div>
+          <div className="home-info">
+            {/* {Object.values(stats).map((stat) => (
+              <p>{stat}</p>
+            ))} */}
+          </div>
         </>
       )}
     </HomeStyled>
@@ -37,15 +41,20 @@ const Home = ({ stats, teamHero, setTeamHero, isFull, setIsFull }) => {
 const HomeStyled = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 95vw;
+  justify-content: center;
+  width: 85vw;
   margin-bottom: 3rem;
-  p {
+  h3 {
     justify-self: center;
+
     a {
       text-decoration: none;
       color: tomato;
     }
+  }
+  h3.home-heading {
+    text-align: center;
+    width: 100%;
   }
   div.home-cards {
     width: 60%;
@@ -53,9 +62,9 @@ const HomeStyled = styled.div`
     flex-wrap: wrap;
   }
   div.home-info {
-    width: 40%;
+    width: 0%;
     height: 100%;
-    background-color: yellow;
+    min-height: 50vh;
   }
 `;
 export default Home;
