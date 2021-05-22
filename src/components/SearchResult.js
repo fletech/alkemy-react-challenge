@@ -61,7 +61,7 @@ const SearchResultStyled = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 2rem;
+  margin: 3rem 0;
   position: relative;
 `;
 

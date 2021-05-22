@@ -9,6 +9,7 @@ export const HeaderStyled = styled.header`
   background-color: #f7f7f7;
   display: flex;
   padding: 0 5vw;
+  z-index: 10;
 `;
 
 export const SectionStyled = styled.section`
@@ -31,9 +32,10 @@ export const FooterStyled = styled.footer`
   background-color: #f7f7f7;
   position: fixed;
   bottom: 0;
+  z-index: 10;
   a {
     margin: 0 0.5rem;
     text-decoration: none;
-    color: orange;
+    color: dodgerblue;
   }
 `;

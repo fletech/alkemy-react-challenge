@@ -13,7 +13,7 @@ export const useStateWithLocalStorage = (localStorageKey) => {
   return [teamHero, setTeamHero];
 };
 
-//addRemoveHeroHanderl
+//addRemoveHeroHandlers
 export const addRemove = ({ e, teamHero, setTeamHero }) => {
   let idClicked = e.target.dataset.id;
   //console.log(idClicked);
@@ -80,10 +80,12 @@ export const breathe = `@keyframes breathe {
 //Loop
 export const loopAnObject = (object) => {
   let sum = 0;
+
   for (const key in object) {
     if (object[key] === (null || "null")) {
       object[key] = 0;
     }
+
     sum += parseInt(object[key]);
   }
   return sum;

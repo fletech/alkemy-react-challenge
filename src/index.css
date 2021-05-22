@@ -7,6 +7,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@media (max-width: 600px) {
+  html {
+    font-size: 75%;
+  }
+}
 button,
 input {
   font-family: "PT Mono";

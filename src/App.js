@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //React-router
 import { Route, Switch, useLocation, Redirect } from "react-router-dom";
 //utils
@@ -30,17 +30,47 @@ function App({ token }) {
   const [isLogged, setIsLogged] = useState(token);
   const [toggleAside, setToggleAside] = useState(true);
   const [resultNull, setResultNull] = useState(false);
-  const [inputFocused, setFocus] = useState(false);
-  const [stats, setStats] = useState();
+  const [inputFocused, setFocus] = useState(true);
+  const [stats, setStats] = useState({
+    strength: 0,
+    power: 0,
+    speed: 0,
+    intelligence: 0,
+    combat: 0,
+    durability: 0,
+  });
 
   //console.log(isLogged);
 
   //Use Effect:
+  useEffect(() => {
+    let keyName = Object.keys(stats);
+    let newStats = {
+      strength: 0,
+      power: 0,
+      speed: 0,
+      intelligence: 0,
+      combat: 0,
+      durability: 0,
+    };
+
+    keyName.map((key) =>
+      teamHero.map(
+        (hero) =>
+          // console.log(
+          //   `${key} de ${hero.name}: ${parseInt(hero.powerstats[key])}`
+          // );
+          (newStats[key] += parseInt(hero.powerstats[key]))
+      )
+    );
+
+    setStats(newStats);
+  }, [teamHero]);
 
   //Handlers:
 
   const inputFocusHandler = (e) => {
-    if (e.target.className !== "input-search" && searchValue.length !== 0) {
+    if (e.target.className !== "input-search" && searchValue.length === 0) {
       setFocus(false);
     }
   };
@@ -48,13 +78,17 @@ function App({ token }) {
   return (
     <div className="App" onClick={inputFocusHandler}>
       <Header
-        setToggleAside={setToggleAside}
-        toggleAside={toggleAside}
         isLogged={isLogged}
         setIsLogged={setIsLogged}
+        stats={stats}
+        setStats={setStats}
+        toggleAside={toggleAside}
+        setToggleAside={setToggleAside}
+        teamHero={teamHero}
       />
       <Aside
         toggleAside={toggleAside}
+        setToggleAside={setToggleAside}
         isLogged={isLogged}
         addRemove={addRemove}
         teamHero={teamHero}
@@ -68,7 +102,13 @@ function App({ token }) {
             {isLogged ? (
               <>
                 <Route path="/" exact>
-                  <Home />
+                  <Home
+                    isFull={isFull}
+                    setIsFull={setIsFull}
+                    teamHero={teamHero}
+                    setTeamHero={setTeamHero}
+                    stats={stats}
+                  />
                 </Route>
 
                 <Route path="/search" exact>

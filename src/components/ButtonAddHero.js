@@ -9,6 +9,8 @@ const ButtonAddRemoveHero = ({
   setTeamHero,
   icon,
   iconCustom,
+  stats,
+  setStats,
   ...props
 }) => {
   useEffect(() => {

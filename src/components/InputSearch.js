@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import { url } from "../utils";
 import styled from "styled-components";
+import { LaptopWindows } from "@material-ui/icons";
 
 // import { Formik, Form } from "formik";
 
@@ -17,29 +18,31 @@ const InputSearch = ({
   setFocus,
 }) => {
   //states
-  const [prediction, setPrediction] = useState();
+  //const [prediction, setPrediction] = useState();
   //handlers
-  const predictSearchingHandler = (e) => {
-    axios
-      .get(`${url}/search/${searchValue}`)
-      .then((response) => {
-        console.log(response.data.results);
-        // if (response.data.results === undefined) {
-        //   setResultNull(true);
-        // }
-        setPrediction(response.data.results);
-      })
-      .catch(function (error) {
-        if (error.response) {
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
-      });
-  };
+  // const predictSearchingHandler = (e) => {
+  //   axios
+  //     .get(`${url}/search/${searchValue}`)
+  //     .then((response) => {
+  //       console.log(response.data.results);
+  //       // if (response.data.results === undefined) {
+  //       //   setResultNull(true);
+  //       // }
+  //       setPrediction(response.data.results);
+  //     })
+  //     .catch(function (error) {
+  //       if (error.response) {
+  //         console.log(error.response);
+  //       } else if (error.request) {
+  //         console.log(error.request);
+  //       } else {
+  //         console.log("Error", error.message);
+  //       }
+  //       console.log(error.config);
+  //     });
+  // };
+
+  //Handlers
   const resultHandler = (e) => {
     e.preventDefault();
     axios
@@ -50,7 +53,6 @@ const InputSearch = ({
         if (response.data.results === undefined) {
           setResultNull(true);
         }
-        setResultNull(true);
         setResultSearching(response.data.results);
       })
       .catch(function (error) {
@@ -64,8 +66,27 @@ const InputSearch = ({
         console.log(error.config);
       });
   };
-  //useState
 
+  //let elem = document.querySelector(".input-search");
+  //Grab mouseEvent by firing "click" which wouldn't work, but will give the event
+  //  let event;
+  //  likeBtn.onclick = (e) => {
+  //    event = Object.assign({}, e);
+  //    event.isTrusted = true; //This is key - React will terminate the event if !isTrusted
+  //  };
+  //elem.click();
+  //  setTimeout(() => {
+  //    for (key in elem) {
+  //      if (key.startsWith("__reactEventHandlers")) {
+  //        elem[key].onClick(event);
+  //      }
+  //    }
+  //  }, 1000);
+
+  useEffect(() => {
+    let elem = document.querySelector(".input-search");
+    elem.click();
+  }, []);
   return (
     <>
       {/* <Formik>
@@ -81,16 +102,19 @@ const InputSearch = ({
           </Form>;
         }}
       </Formik> */}
-      {console.log(prediction)}
+
       <form onSubmit={resultHandler}>
         <InputStyled className={inputFocused ? "focus" : ""}>
           <input
+            //ref={inputRef}
+            autoFocus
             type="text"
             value={searchValue}
+            onClick={() => console.log("triggered")}
             className="input-search"
             onChange={(e) => {
               setSearchValue(e.target.value);
-              predictSearchingHandler();
+              //predictSearchingHandler();
             }}
             onFocus={() => {
               setResultNull(false);

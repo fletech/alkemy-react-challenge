@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import InputSearch from "../components/InputSearch";
 import SearchResult from "../components/SearchResult";
