@@ -19,7 +19,8 @@ const Login = ({ setIsLogged }) => {
   const loginHandler = (values) => {
     const body = { email: values.email, password: values.password };
     axios
-      .post("http://challenge-react.alkemy.org/", body)
+      .post("https://fletapi.herokuapp.com/facundo/api/users", body)
+      //.post("http://challenge-react.alkemy.org/", body)
       .then((result) => {
         localStorage.setItem("TOKEN_LOGIN", result.data.token);
         setIsLogged(true);
