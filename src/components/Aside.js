@@ -12,6 +12,8 @@ const Aside = ({
   setToggleAside,
   setTeamHero,
   teamHero,
+  rating,
+  setRating,
 }) => {
   return (
     <AsideStyled className={`${!isLogged || toggleAside ? "hidden" : ""}`}>
@@ -43,12 +45,14 @@ const Aside = ({
                   </Link>
                   <ButtonAddRemoveHero
                     className="selected-breathe"
-                    setIsFull={setIsFull}
                     hero={hero}
+                    iconSecondary="fas fa-heart"
                     isFull={isFull}
+                    setIsFull={setIsFull}
+                    rating={rating}
+                    setRating={setRating}
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
-                    iconSecondary="fas fa-heart"
                   />
                 </div>
                 {/* <p>{hero.name}</p> */}

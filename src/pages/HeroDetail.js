@@ -7,7 +7,14 @@ import { url } from "../utils";
 import HeroCard from "../components/HeroCard";
 import styled from "styled-components";
 
-const HeroDetail = ({ isFull, setIsFull, teamHero, setTeamHero }) => {
+const HeroDetail = ({
+  isFull,
+  setIsFull,
+  teamHero,
+  setTeamHero,
+  rating,
+  setRating,
+}) => {
   const [currentHero, setCurrentHero] = useState();
   let params = useParams();
   useEffect(() => {
@@ -32,6 +39,8 @@ const HeroDetail = ({ isFull, setIsFull, teamHero, setTeamHero }) => {
             iconCustom="fas fa-user-plus"
             isFull={isFull}
             setIsFull={setIsFull}
+            rating={rating}
+            setRating={setRating}
           >
             <ChildrenStyled>
               <div className="hero-info">

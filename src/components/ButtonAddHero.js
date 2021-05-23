@@ -11,6 +11,8 @@ const ButtonAddRemoveHero = ({
   iconCustom,
   stats,
   setStats,
+  rating,
+  setRating,
   ...props
 }) => {
   useEffect(() => {
@@ -25,7 +27,9 @@ const ButtonAddRemoveHero = ({
         })
         .indexOf(true) === -1 ? (
         <button
-          onClick={(e) => addRemove({ e, teamHero, setTeamHero })}
+          onClick={(e) =>
+            addRemove({ e, teamHero, setTeamHero, rating, setRating })
+          }
           data-id={hero.id}
           data-hero={JSON.stringify(hero)}
           className={isFull ? "disabled" : "active"}
@@ -34,7 +38,9 @@ const ButtonAddRemoveHero = ({
         </button>
       ) : (
         <button
-          onClick={(e) => addRemove({ e, teamHero, setTeamHero })}
+          onClick={(e) =>
+            addRemove({ e, teamHero, setTeamHero, rating, setRating })
+          }
           data-id={hero.id}
           data-hero={JSON.stringify(hero)}
           className={"active"}

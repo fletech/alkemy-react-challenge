@@ -23,7 +23,11 @@ function App({ token }) {
   const location = useLocation();
   //console.log(token);
   //State:
-  const [teamHero, setTeamHero] = useStateWithLocalStorage("teamHero");
+  const [teamHero, setTeamHero] = useStateWithLocalStorage("teamHero", []);
+  const [rating, setRating] = useStateWithLocalStorage("rating", {
+    highest: 0,
+    lowest: 0,
+  });
   const [searchValue, setSearchValue] = useState("");
   const [resultSearching, setResultSearching] = useState();
   const [isFull, setIsFull] = useState(false);
@@ -75,6 +79,8 @@ function App({ token }) {
     }
   };
 
+  console.log(rating);
+
   return (
     <div className="App" onClick={inputFocusHandler}>
       <Header
@@ -95,6 +101,8 @@ function App({ token }) {
         setTeamHero={setTeamHero}
         setIsFull={setIsFull}
         isFull={isFull}
+        rating={rating}
+        setRating={setRating}
       />
       <MainStyled>
         <SectionStyled>
@@ -105,6 +113,8 @@ function App({ token }) {
                   <Home
                     isFull={isFull}
                     setIsFull={setIsFull}
+                    rating={rating}
+                    setRating={setRating}
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
                     stats={stats}
@@ -113,8 +123,14 @@ function App({ token }) {
 
                 <Route path="/search" exact>
                   <Search
+                    inputFocused={inputFocused}
+                    setFocus={setFocus}
                     isFull={isFull}
                     setIsFull={setIsFull}
+                    rating={rating}
+                    setRating={setRating}
+                    resultNull={resultNull}
+                    setResultNull={setResultNull}
                     resultSearching={resultSearching}
                     setResultSearching={setResultSearching}
                     searchValue={searchValue}
@@ -122,10 +138,6 @@ function App({ token }) {
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
                     url={url}
-                    resultNull={resultNull}
-                    setResultNull={setResultNull}
-                    inputFocused={inputFocused}
-                    setFocus={setFocus}
                   />
                 </Route>
 
@@ -135,6 +147,8 @@ function App({ token }) {
                     setIsFull={setIsFull}
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
+                    rating={rating}
+                    setRating={setRating}
                   />
                 </Route>
               </>

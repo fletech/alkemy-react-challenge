@@ -1,39 +1,66 @@
 import { useState, useEffect } from "react";
 
 //Custom hook to use when App.js renders.
-export const useStateWithLocalStorage = (localStorageKey) => {
-  const [teamHero, setTeamHero] = useState(
-    JSON.parse(localStorage.getItem(localStorageKey)) || []
+export const useStateWithLocalStorage = (localStorageKey, defaultValue) => {
+  const [state, setState] = useState(
+    JSON.parse(localStorage.getItem(localStorageKey)) || defaultValue
   );
 
   useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(teamHero));
-  }, [teamHero, localStorageKey]);
+    localStorage.setItem(localStorageKey, JSON.stringify(state));
+  }, [state, localStorageKey]);
 
-  return [teamHero, setTeamHero];
+  return [state, setState];
 };
 
 //addRemoveHeroHandlers
-export const addRemove = ({ e, teamHero, setTeamHero }) => {
+export const addRemove = ({ e, teamHero, setTeamHero, rating, setRating }) => {
   let idClicked = e.target.dataset.id;
-  //console.log(idClicked);
   let heroData = e.target.dataset.hero;
-  //console.log(e.target.dataset);
-  let heroAdded =
-    typeof heroData !== "string" ? heroData : JSON.parse(heroData);
 
-  if (teamHero.length === 0) {
-    setTeamHero([...teamHero, heroAdded]);
+  //normalize data since might be an string or an object, depending on if it is coming from
+  //a searching or from the conformed team stored at teamHero
+  let heroClicked =
+    typeof heroData !== "string" ? heroData : JSON.parse(heroData);
+  //
+  console.log(rating);
+  let newRating = {};
+  newRating = { highest: rating.highest, lowest: rating.lowest };
+
+  let points = loopAnObject(heroClicked.powerstats);
+
+  // if hero clicked is already in the team then delete it.
+  if (teamHero.filter((hero) => hero.id === idClicked).length > 0) {
+    console.log("deleted");
+    points > 300 ? (newRating.highest -= 1) : (newRating.lowest -= 1);
+    setRating(newRating);
+    return setTeamHero(teamHero.filter((hero) => hero.id !== idClicked));
   }
-  if (teamHero.length <= 5) {
-    teamHero.filter((hero) => hero.id === idClicked).length > 0
-      ? console.log("It already exists")
-      : setTeamHero([...teamHero, heroAdded]);
-  }
-  if (teamHero.length <= 6) {
-    teamHero.filter((hero) => hero.id === idClicked).length > 0
-      ? setTeamHero(teamHero.filter((hero) => hero.id !== idClicked))
-      : console.log("Added");
+  //
+
+  // a new key created to be manipulated at /home where there are 2 divs,
+  //one for the highest ones, another for the lowest ones.
+  heroClicked.points = points;
+  //
+
+  if (teamHero.length < 6) {
+    if (points > 300) {
+      if (rating.highest < 3) {
+        newRating.highest += 1;
+        setRating(newRating);
+        setTeamHero([...teamHero, heroClicked]);
+      } else {
+        console.log("highest heroes subteam is full");
+      }
+    } else {
+      if (rating.lowest < 3) {
+        newRating.lowest += 1;
+        setRating(newRating);
+        setTeamHero([...teamHero, heroClicked]);
+      } else {
+        console.log("lowest heroes subteam is full");
+      }
+    }
   }
 };
 

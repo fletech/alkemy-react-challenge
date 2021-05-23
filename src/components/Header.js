@@ -59,7 +59,11 @@ const Header = ({
               </div>
 
               {Object.keys(Icons).map((keyName) => (
-                <Stat className={stats[keyName]} icon={Icons[keyName]}>
+                <Stat
+                  className={stats[keyName]}
+                  icon={Icons[keyName]}
+                  key={keyName}
+                >
                   <small>{stats[keyName]}</small>
                 </Stat>
               ))}

@@ -11,6 +11,8 @@ const SearchResult = ({
   teamHero,
   setTeamHero,
   resultNull,
+  rating,
+  setRating,
 }) => {
   //USE EFFECT
   useEffect(() => {
@@ -31,6 +33,8 @@ const SearchResult = ({
               hero={heroResult}
               key={heroResult.id}
               className="hero-to-add"
+              rating={rating}
+              setRating={setRating}
               teamHero={teamHero}
               setTeamHero={setTeamHero}
               icon="far fa-heart"
@@ -43,6 +47,8 @@ const SearchResult = ({
               hero={heroResult}
               key={heroResult.id}
               className="hero-added"
+              rating={rating}
+              setRating={setRating}
               teamHero={teamHero}
               setTeamHero={setTeamHero}
               icon="fas fa-trash"

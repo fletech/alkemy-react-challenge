@@ -16,6 +16,8 @@ const Search = ({
   setResultNull,
   inputFocused,
   setFocus,
+  rating,
+  setRating,
 }) => {
   return (
     <SearchStyled>
@@ -49,6 +51,8 @@ const Search = ({
 
       <SearchResult
         isFull={isFull}
+        rating={rating}
+        setRating={setRating}
         setIsFull={setIsFull}
         resultSearching={resultSearching}
         teamHero={teamHero}

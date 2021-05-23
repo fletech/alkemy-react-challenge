@@ -15,6 +15,8 @@ const HeroCard = ({
   setIsFull,
   icon,
   iconCustom,
+  rating,
+  setRating,
 }) => {
   let average = loopAnObject(hero.powerstats);
   return (
@@ -38,6 +40,8 @@ const HeroCard = ({
           setIsFull={setIsFull}
           hero={hero}
           isFull={isFull}
+          rating={rating}
+          setRating={setRating}
           teamHero={teamHero}
           setTeamHero={setTeamHero}
           icon={icon}
