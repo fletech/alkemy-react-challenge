@@ -32,6 +32,9 @@ const Aside = ({
             )}
           </div>
         )}
+        <div className="header-title">
+          <p className="title">My team</p>
+        </div>
       </div>
 
       {teamHero.length > 0 && (
@@ -39,7 +42,7 @@ const Aside = ({
           {teamHero.map((hero) => {
             return (
               <DivHero key={hero.id}>
-                <div>
+                <div className="hero-field">
                   <Link to={`/hero-detail/${hero.id}`}>
                     <img src={hero.image.url} alt={hero.name} />
                   </Link>
@@ -54,6 +57,13 @@ const Aside = ({
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
                   />
+                  <div className="hero-info">
+                    <p>{hero.name}</p>
+                    <i>
+                      <small>pts:</small>
+                      {hero.points}
+                    </i>
+                  </div>
                 </div>
                 {/* <p>{hero.name}</p> */}
               </DivHero>
@@ -71,38 +81,44 @@ const AsideStyled = styled.aside`
   }
   box-shadow: 2px 0px 10px #acacac;
 
-  padding-left: 1rem;
+  padding: 0 0.5rem;
   position: fixed;
   bottom: 0;
   height: 85vh;
   left: 0;
   top: 10vh;
   bottom: 5vh;
-  width: 10vw;
+  width: 12vw;
   min-width: 150px;
   background-color: rgba(66, 66, 66, 0.911) !important;
   transition: all 0.5s ease-in-out;
   z-index: 3;
   div.aside-header {
     position: relative;
+    div.header-title {
+      p.title {
+        padding-top: 1.5rem;
+        color: white;
+      }
+    }
     div.toggle-aside {
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: white;
-      width: 2rem;
-      height: 2rem;
+      width: 1.5rem;
+      height: 1.5rem;
       border-radius: 50%;
       position: absolute;
       top: 0.5rem;
-      right: -3rem;
+      right: -2.5rem;
       z-index: 200;
       cursor: pointer;
       transition: right 1s ease-in-out;
       @media (max-width: 500px) {
       }
       &.on {
-        right: 0.5rem;
+        right: 0rem;
         transition: right 1s ease-in-out;
         transform: rotate(180deg);
         box-shadow: 1px 1px 6px tomato, -1px -1px 6px #dae905;
@@ -121,19 +137,44 @@ const AsideStyled = styled.aside`
 `;
 const DivHero = styled.div`
   height: 100%;
+  width: 100%;
   display: flex;
-  margin-top: 3rem;
+  padding: 1.5rem 0;
   align-items: center;
-
-  div {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  justify-content: space-between;
+  border-top: solid 1px #6d6d6d;
+  div.hero-field {
+    width: 100%;
+    height: 3rem;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div.hero-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-right: 0.5rem;
+      p {
+        font-size: 0.7rem;
+        color: white;
+        padding-right: 0.5rem;
+      }
+      i {
+        margin-top: 0.3rem;
+        font-size: 0.7rem;
+        color: #a0a0a0;
+        font-weight: bold;
+        small {
+        }
+      }
+    }
     img {
       object-fit: cover;
-      width: 100%;
-      height: 100%;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
     }
     .selected-breathe {
@@ -144,14 +185,14 @@ const DivHero = styled.div`
       }
     }
     button {
-      width: 20px;
-      height: 20px;
+      width: 10px;
+      height: 10px;
       border: none;
       border-radius: 20px;
       z-index: 10;
       position: absolute;
-      top: -5px;
-      right: -10px;
+      top: -10px;
+      right: 0.5rem;
       background: none;
       animation: breathe 3s ease-in-out;
       i {

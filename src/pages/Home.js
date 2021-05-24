@@ -184,6 +184,7 @@ const HomeStyled = styled.div`
       display: flex;
       justify-content: center;
       margin-bottom: 2rem;
+      flex-wrap: wrap;
       small {
         margin: 2rem 0;
         width: 100%;
