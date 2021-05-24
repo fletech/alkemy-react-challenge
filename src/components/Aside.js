@@ -106,26 +106,28 @@ const AsideStyled = styled.aside`
       align-items: center;
       justify-content: center;
       background-color: white;
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 2rem;
+      height: 2rem;
       border-radius: 50%;
       position: absolute;
       top: 0.5rem;
-      right: -2.5rem;
+      right: -3rem;
       z-index: 200;
       cursor: pointer;
-      transition: right 1s ease-in-out;
+      transition: right width 1s ease-in-out;
       @media (max-width: 500px) {
       }
       &.on {
         right: 0rem;
-        transition: right 1s ease-in-out;
+        width: 1.5rem;
+        height: 1.5rem;
+        transition: right width 1s ease-in-out;
         transform: rotate(180deg);
         box-shadow: 1px 1px 6px tomato, -1px -1px 6px #dae905;
         z-index: 200;
       }
       &.off {
-        transition: right 1s ease-in-out;
+        transition: right width 1s ease-in-out;
         animation: shadow-spin 2s infinite ease-in-out;
       }
       i {
