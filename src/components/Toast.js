@@ -51,6 +51,7 @@ const ToastStyled = styled.div`
       color: white;
       font-family: "Chivo";
       font-weight: 500;
+      padding-bottom: 3px;
     }
   }
 

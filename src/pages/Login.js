@@ -29,11 +29,10 @@ const Login = ({
       const body = { email: values.email, password: values.password };
       const result = await axios.post(
         "https://fletapi.herokuapp.com/facundo/api/users",
+        //"http://challenge-react.alkemy.org/",
         body
       );
 
-      console.log(result);
-      //.post("http://challenge-react.alkemy.org/", body)
       setToast(false);
       setToastType({});
       setToast(true);
@@ -56,7 +55,7 @@ const Login = ({
       setToast(true);
       setToastType({
         type: "info",
-        message: "Try again",
+        message: "Network error. Try again in a few minutes",
       });
       setTimeout(() => {
         setToast(false);

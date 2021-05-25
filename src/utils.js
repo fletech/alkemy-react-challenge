@@ -34,7 +34,7 @@ export const addRemove = ({
     setTimeout(() => {
       setToast(false);
       setToastType({});
-    }, 3000);
+    }, 1000);
   };
   let idClicked = e.target.dataset.id;
   let heroData = e.target.dataset.hero;
@@ -59,7 +59,7 @@ export const addRemove = ({
   }
   //
 
-  // a new key created to be manipulated at /home where there are 2 divs,
+  // a new key created (.points) to be manipulated at < Home /> where there are 2 divs,
   //one for the highest ones, another for the lowest ones.
   heroClicked.points = points;
   //
@@ -69,7 +69,7 @@ export const addRemove = ({
       if (rating.highest < 3) {
         newRating.highest += 1;
 
-        toastHandler("success", `Hero added to highest-team`, "green");
+        toastHandler("success", `Hero added to the highest-team`, "green");
         setRating(newRating);
         return setTeamHero([...teamHero, heroClicked]);
       } else {
@@ -78,7 +78,7 @@ export const addRemove = ({
     } else {
       if (rating.lowest < 3) {
         newRating.lowest += 1;
-        toastHandler("success", `Hero added to lowest-team`, "green");
+        toastHandler("success", `Hero added to the lowest-team`, "green");
         setRating(newRating);
         return setTeamHero([...teamHero, heroClicked]);
       } else {
