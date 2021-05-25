@@ -14,6 +14,10 @@ const HeroDetail = ({
   setTeamHero,
   rating,
   setRating,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
 }) => {
   const [currentHero, setCurrentHero] = useState();
   let params = useParams();
@@ -41,6 +45,10 @@ const HeroDetail = ({
             setIsFull={setIsFull}
             rating={rating}
             setRating={setRating}
+            toast={toast}
+            setToast={setToast}
+            toastType={toastType}
+            setToastType={setToastType}
           >
             <ChildrenStyled>
               <div className="hero-info">

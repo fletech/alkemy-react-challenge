@@ -13,6 +13,10 @@ const SearchResult = ({
   resultNull,
   rating,
   setRating,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
 }) => {
   //USE EFFECT
   useEffect(() => {
@@ -41,6 +45,10 @@ const SearchResult = ({
               isFull={isFull}
               setIsFull={setIsFull}
               iconInfo="fas fa-info-circle"
+              toast={toast}
+              setToast={setToast}
+              toastType={toastType}
+              setToastType={setToastType}
             />
           ) : (
             <HeroCard
@@ -55,6 +63,10 @@ const SearchResult = ({
               isFull={isFull}
               setIsFull={setIsFull}
               iconInfo="fas fa-info-circle"
+              toast={toast}
+              setToast={setToast}
+              toastType={toastType}
+              setToastType={setToastType}
             />
           );
         })}

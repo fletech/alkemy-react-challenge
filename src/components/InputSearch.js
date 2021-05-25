@@ -48,7 +48,7 @@ const InputSearch = ({
       .get(`${url}/search/${searchValue}`)
       .then((response) => {
         setResultNull(false);
-        console.log(response.data.results);
+        //console.log(response.data.results);
         if (response.data.results === undefined) {
           setResultNull(true);
         }

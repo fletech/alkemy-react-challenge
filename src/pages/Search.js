@@ -18,6 +18,10 @@ const Search = ({
   setFocus,
   rating,
   setRating,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
 }) => {
   return (
     <SearchStyled>
@@ -57,6 +61,10 @@ const Search = ({
         resultSearching={resultSearching}
         teamHero={teamHero}
         setTeamHero={setTeamHero}
+        toast={toast}
+        setToast={setToast}
+        toastType={toastType}
+        setToastType={setToastType}
       />
     </SearchStyled>
   );

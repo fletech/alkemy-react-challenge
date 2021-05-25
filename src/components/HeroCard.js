@@ -17,6 +17,10 @@ const HeroCard = ({
   iconCustom,
   rating,
   setRating,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
 }) => {
   let average = loopAnObject(hero.powerstats);
   return (
@@ -46,6 +50,10 @@ const HeroCard = ({
           setTeamHero={setTeamHero}
           icon={icon}
           iconCustom={iconCustom}
+          toast={toast}
+          setToast={setToast}
+          toastType={toastType}
+          setToastType={setToastType}
         />
         {iconInfo && (
           <Link to={`/hero-detail/${hero.id}`}>

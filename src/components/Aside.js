@@ -14,6 +14,10 @@ const Aside = ({
   teamHero,
   rating,
   setRating,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
 }) => {
   return (
     <AsideStyled className={`${!isLogged || toggleAside ? "hidden" : ""}`}>
@@ -56,6 +60,10 @@ const Aside = ({
                     setRating={setRating}
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
+                    toast={toast}
+                    setToast={setToast}
+                    toastType={toastType}
+                    setToastType={setToastType}
                   />
                   <div className="hero-info">
                     <p>{hero.name}</p>

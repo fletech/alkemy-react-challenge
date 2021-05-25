@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import InputField from "../components/InputField";
 import styled from "styled-components";
@@ -6,9 +6,16 @@ import * as Yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const Login = ({ setIsLogged }) => {
+const Login = ({
+  isLogged,
+  setIsLogged,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
+}) => {
   let history = useHistory();
-
+  const [submitted, setSubmitted] = useState(false);
   const validate = Yup.object({
     email: Yup.string().email("challenge@alkemy.org").required("Required"),
     password: Yup.string().min(5, "react").required("Required"),
@@ -16,18 +23,58 @@ const Login = ({ setIsLogged }) => {
   //states
 
   //handlers
-  const loginHandler = (values) => {
-    const body = { email: values.email, password: values.password };
-    axios
-      .post("https://fletapi.herokuapp.com/facundo/api/users", body)
+  const loginHandler = async (values) => {
+    setSubmitted(true);
+    try {
+      const body = { email: values.email, password: values.password };
+      const result = await axios.post(
+        "https://fletapi.herokuapp.com/facundo/api/users",
+        body
+      );
+
+      console.log(result);
       //.post("http://challenge-react.alkemy.org/", body)
-      .then((result) => {
-        localStorage.setItem("TOKEN_LOGIN", result.data.token);
-        setIsLogged(true);
-        return history.push("/");
-      })
-      .catch((err) => console.log(err)); //TOAST ERROR
+      setToast(false);
+      setToastType({});
+      setToast(true);
+      setToastType({
+        type: "success",
+        message: "Logged-in. Have fun 🎉",
+      });
+      setTimeout(() => {
+        setToast(false);
+        setToastType({});
+      }, 3000);
+
+      localStorage.setItem("TOKEN_LOGIN", result.data.token);
+      setSubmitted(false);
+      setIsLogged(true);
+      history.push("/");
+      return result.status;
+    } catch (err) {
+      console.log(err);
+      setToast(true);
+      setToastType({
+        type: "info",
+        message: "Try again",
+      });
+      setTimeout(() => {
+        setToast(false);
+        setToastType({});
+      }, 3000);
+    }
+    //
   };
+
+  useEffect(() => {
+    if (submitted) {
+      setToast(true);
+      setToastType({
+        type: "info",
+        message: "Logging-in",
+      });
+    }
+  }, [submitted]);
 
   return (
     <Formik

@@ -2,9 +2,15 @@ import React, { useEffect, useState } from "react";
 //React-router
 import { Route, Switch, useLocation, Redirect } from "react-router-dom";
 //utils
-import { useStateWithLocalStorage, addRemove, url } from "./utils";
+import {
+  useStateWithLocalStorage,
+  addRemove,
+  url,
+  loopAnObject,
+} from "./utils";
 
 //Pages
+import HeroDetail from "./pages/HeroDetail";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Search from "./pages/Search";
@@ -15,40 +21,45 @@ import { SectionStyled } from "./components/styled";
 import Aside from "./components/Aside";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import HeroDetail from "./pages/HeroDetail";
+import Toast from "./components/Toast";
 
 ///RENDER///
 function App({ token }) {
   //Location - Routing:
   const location = useLocation();
-  //console.log(token);
-  //State:
+
+  ///////State:
+  //custom hooks.
   const [teamHero, setTeamHero] = useStateWithLocalStorage("teamHero", []);
   const [rating, setRating] = useStateWithLocalStorage("rating", {
     highest: 0,
     lowest: 0,
   });
-  const [searchValue, setSearchValue] = useState("");
-  const [resultSearching, setResultSearching] = useState();
+  //useState
+  const [inputFocused, setFocus] = useState(true);
   const [isFull, setIsFull] = useState(false);
   const [isLogged, setIsLogged] = useState(token);
-  const [toggleAside, setToggleAside] = useState(true);
   const [resultNull, setResultNull] = useState(false);
-  const [inputFocused, setFocus] = useState(true);
-  const [stats, setStats] = useState({
-    strength: 0,
-    power: 0,
-    speed: 0,
-    intelligence: 0,
-    combat: 0,
-    durability: 0,
-  });
+  const [resultSearching, setResultSearching] = useState();
+  const [searchValue, setSearchValue] = useState("");
+  const [stats, setStats] = useState({});
+  const [toast, setToast] = useState(false);
+  const [toastType, setToastType] = useState({});
+  //toastType objecto to be read it when toast is true. {type: "sample", backgroundColor: "sample"}
+  const [toggleAside, setToggleAside] = useState(true);
 
-  //console.log(isLogged);
+  // const [stats, setStats] = useState({
+  //   // strength: 0,
+  //   // power: 0,
+  //   // speed: 0,
+  //   // intelligence: 0,
+  //   // combat: 0,
+  //   // durability: 0,
+  // });
 
   //Use Effect:
   useEffect(() => {
-    let keyName = Object.keys(stats);
+    //let keyName = Object.keys(stats);
     let newStats = {
       strength: 0,
       power: 0,
@@ -57,18 +68,24 @@ function App({ token }) {
       combat: 0,
       durability: 0,
     };
-
+    let keyName = Object.keys(newStats);
     keyName.map((key) =>
-      teamHero.map(
-        (hero) =>
-          // console.log(
-          //   `${key} de ${hero.name}: ${parseInt(hero.powerstats[key])}`
-          // );
-          (newStats[key] += parseInt(hero.powerstats[key]))
-      )
+      teamHero.map((hero) => (newStats[key] += parseInt(hero.powerstats[key])))
     );
-
     setStats(newStats);
+    // let points = loopAnObject(newStats);
+    // let team = points > 300 ? "Highest-rating" : "Lowest-rating";
+    // setToast(true);
+    // setToastType({
+    //   type: "success",
+    //   message: `Hero added to ${team} team`,
+    //   backgroundColor: "green",
+    // });
+    // setTimeout(() => {
+    //   console.log(toast);
+    //   setToast(false);
+    //   setToastType({});
+    // }, 4000);
   }, [teamHero]);
 
   //Handlers:
@@ -79,10 +96,9 @@ function App({ token }) {
     }
   };
 
-  console.log(rating);
-
   return (
     <div className="App" onClick={inputFocusHandler}>
+      <Toast toast={toast} toastType={toastType} />
       <Header
         isLogged={isLogged}
         setIsLogged={setIsLogged}
@@ -103,6 +119,10 @@ function App({ token }) {
         isFull={isFull}
         rating={rating}
         setRating={setRating}
+        toast={toast}
+        setToast={setToast}
+        toastType={toastType}
+        setToastType={setToastType}
       />
       <MainStyled>
         <SectionStyled>
@@ -118,6 +138,10 @@ function App({ token }) {
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
                     stats={stats}
+                    toast={toast}
+                    setToast={setToast}
+                    toastType={toastType}
+                    setToastType={setToastType}
                   />
                 </Route>
 
@@ -138,6 +162,10 @@ function App({ token }) {
                     teamHero={teamHero}
                     setTeamHero={setTeamHero}
                     url={url}
+                    toast={toast}
+                    setToast={setToast}
+                    toastType={toastType}
+                    setToastType={setToastType}
                   />
                 </Route>
 
@@ -149,6 +177,10 @@ function App({ token }) {
                     setTeamHero={setTeamHero}
                     rating={rating}
                     setRating={setRating}
+                    toast={toast}
+                    setToast={setToast}
+                    toastType={toastType}
+                    setToastType={setToastType}
                   />
                 </Route>
               </>
@@ -158,7 +190,14 @@ function App({ token }) {
                   <Redirect to="/login" />
                 </Route>
                 <Route path="/login" exact>
-                  <Login setIsLogged={setIsLogged} />
+                  <Login
+                    isLogged={isLogged}
+                    setIsLogged={setIsLogged}
+                    toast={toast}
+                    setToast={setToast}
+                    toastType={toastType}
+                    setToastType={setToastType}
+                  />
                 </Route>
               </>
             )}

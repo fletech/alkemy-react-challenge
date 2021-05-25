@@ -13,6 +13,10 @@ const ButtonAddRemoveHero = ({
   setStats,
   rating,
   setRating,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
   ...props
 }) => {
   useEffect(() => {
@@ -28,7 +32,17 @@ const ButtonAddRemoveHero = ({
         .indexOf(true) === -1 ? (
         <button
           onClick={(e) =>
-            addRemove({ e, teamHero, setTeamHero, rating, setRating })
+            addRemove({
+              e,
+              teamHero,
+              setTeamHero,
+              rating,
+              setRating,
+              toast,
+              setToast,
+              toastType,
+              setToastType,
+            })
           }
           data-id={hero.id}
           data-hero={JSON.stringify(hero)}
@@ -39,7 +53,17 @@ const ButtonAddRemoveHero = ({
       ) : (
         <button
           onClick={(e) =>
-            addRemove({ e, teamHero, setTeamHero, rating, setRating })
+            addRemove({
+              e,
+              teamHero,
+              setTeamHero,
+              rating,
+              setRating,
+              toast,
+              setToast,
+              toastType,
+              setToastType,
+            })
           }
           data-id={hero.id}
           data-hero={JSON.stringify(hero)}

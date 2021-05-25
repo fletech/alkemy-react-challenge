@@ -14,7 +14,28 @@ export const useStateWithLocalStorage = (localStorageKey, defaultValue) => {
 };
 
 //addRemoveHeroHandlers
-export const addRemove = ({ e, teamHero, setTeamHero, rating, setRating }) => {
+export const addRemove = ({
+  e,
+  teamHero,
+  setTeamHero,
+  rating,
+  setRating,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
+}) => {
+  const toastHandler = (type, message) => {
+    setToast(true);
+    setToastType({
+      type: type,
+      message: message,
+    });
+    setTimeout(() => {
+      setToast(false);
+      setToastType({});
+    }, 3000);
+  };
   let idClicked = e.target.dataset.id;
   let heroData = e.target.dataset.hero;
 
@@ -23,9 +44,8 @@ export const addRemove = ({ e, teamHero, setTeamHero, rating, setRating }) => {
   let heroClicked =
     typeof heroData !== "string" ? heroData : JSON.parse(heroData);
   //
-  console.log(rating);
-  let newRating = {};
-  newRating = { highest: rating.highest, lowest: rating.lowest };
+  //console.log(rating);
+  let newRating = { highest: rating.highest, lowest: rating.lowest };
 
   let points = loopAnObject(heroClicked.powerstats);
 
@@ -34,6 +54,7 @@ export const addRemove = ({ e, teamHero, setTeamHero, rating, setRating }) => {
     console.log("deleted");
     points > 300 ? (newRating.highest -= 1) : (newRating.lowest -= 1);
     setRating(newRating);
+    toastHandler("deleted", "Hero deleted", "tomato");
     return setTeamHero(teamHero.filter((hero) => hero.id !== idClicked));
   }
   //
@@ -47,18 +68,21 @@ export const addRemove = ({ e, teamHero, setTeamHero, rating, setRating }) => {
     if (points > 300) {
       if (rating.highest < 3) {
         newRating.highest += 1;
+
+        toastHandler("success", `Hero added to highest-team`, "green");
         setRating(newRating);
-        setTeamHero([...teamHero, heroClicked]);
+        return setTeamHero([...teamHero, heroClicked]);
       } else {
-        console.log("highest heroes subteam is full");
+        toastHandler("aware", `The highest-team is full 😕.`, "gold");
       }
     } else {
       if (rating.lowest < 3) {
         newRating.lowest += 1;
+        toastHandler("success", `Hero added to lowest-team`, "green");
         setRating(newRating);
-        setTeamHero([...teamHero, heroClicked]);
+        return setTeamHero([...teamHero, heroClicked]);
       } else {
-        console.log("lowest heroes subteam is full");
+        toastHandler("aware", `The lowest-team is full 😕.`, "gold");
       }
     }
   }

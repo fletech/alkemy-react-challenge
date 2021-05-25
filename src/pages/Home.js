@@ -13,6 +13,10 @@ const Home = ({
   setIsFull,
   rating,
   setRating,
+  toast,
+  setToast,
+  toastType,
+  setToastType,
 }) => {
   return (
     <HomeStyled>
@@ -57,6 +61,10 @@ const Home = ({
                     setIsFull={setIsFull}
                     rating={rating}
                     setRating={setRating}
+                    toast={toast}
+                    setToast={setToast}
+                    toastType={toastType}
+                    setToastType={setToastType}
                   />
                 ) : (
                   ""
@@ -96,6 +104,10 @@ const Home = ({
                     setIsFull={setIsFull}
                     rating={rating}
                     setRating={setRating}
+                    toast={toast}
+                    setToast={setToast}
+                    toastType={toastType}
+                    setToastType={setToastType}
                   />
                 ) : (
                   ""
