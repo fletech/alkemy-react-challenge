@@ -2,39 +2,17 @@ import React from "react";
 import { HeaderStyled } from "./styled";
 import styled from "styled-components";
 import { Link, Redirect, useHistory } from "react-router-dom";
-import { shadowSpin } from "../utils";
+import { Icons } from "../utils";
+
 //Components
 import Stat from "./Stat";
 
 //Icons
 import SvgIcon from "@material-ui/icons/BatteryChargingFull";
 
-import Strength from "@material-ui/icons/FitnessCenter";
-import Power from "@material-ui/icons/BatteryChargingFull";
-import Speed from "@material-ui/icons/Speed";
-
-import { ReactComponent as Intelligence } from "../images/brain.svg";
-import { ReactComponent as Combat } from "../images/axe.svg";
-import { ReactComponent as Durability } from "../images/heartbeat.svg";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
-const Icons = {
-  intelligence: Intelligence,
-  combat: Combat,
-  power: Power,
-  speed: Speed,
-  strength: Strength,
-  durability: Durability,
-};
-
-const Header = ({
-  toggleAside,
-  setToggleAside,
-  isLogged,
-  setIsLogged,
-  stats,
-  teamHero,
-}) => {
+const Header = ({ isLogged, setIsLogged, stats, teamHero }) => {
   const history = useHistory();
 
   return (

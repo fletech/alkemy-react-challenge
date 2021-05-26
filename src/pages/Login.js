@@ -43,19 +43,19 @@ const Login = ({
       setTimeout(() => {
         setToast(false);
         setToastType({});
-      }, 3000);
+      }, 4000);
 
       localStorage.setItem("TOKEN_LOGIN", result.data.token);
       setSubmitted(false);
       setIsLogged(true);
-      history.push("/");
-      return result.status;
+
+      return history.push("/");
     } catch (err) {
       console.log(err);
       setToast(true);
       setToastType({
         type: "info",
-        message: "Network error. Try again in a few minutes",
+        message: "Error. Try again",
       });
       setTimeout(() => {
         setToast(false);

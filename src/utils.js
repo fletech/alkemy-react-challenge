@@ -1,4 +1,11 @@
 import { useState, useEffect } from "react";
+import Strength from "@material-ui/icons/FitnessCenter";
+import Power from "@material-ui/icons/BatteryChargingFull";
+import Speed from "@material-ui/icons/Speed";
+
+import { ReactComponent as Intelligence } from "./images/brain.svg";
+import { ReactComponent as Combat } from "./images/axe.svg";
+import { ReactComponent as Durability } from "./images/heartbeat.svg";
 
 //Custom hook to use when App.js renders.
 export const useStateWithLocalStorage = (localStorageKey, defaultValue) => {
@@ -34,7 +41,7 @@ export const addRemove = ({
     setTimeout(() => {
       setToast(false);
       setToastType({});
-    }, 1000);
+    }, 2000);
   };
   let idClicked = e.target.dataset.id;
   let heroData = e.target.dataset.hero;
@@ -140,4 +147,14 @@ export const loopAnObject = (object) => {
     sum += parseInt(object[key]);
   }
   return sum;
+};
+
+//Icons - stats
+export const Icons = {
+  intelligence: Intelligence,
+  combat: Combat,
+  power: Power,
+  speed: Speed,
+  strength: Strength,
+  durability: Durability,
 };

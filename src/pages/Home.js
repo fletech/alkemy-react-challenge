@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import { Link } from "react-router-dom";
 
 import HeroCard from "../components/HeroCard";
+import Stat from "../components/Stat";
+import { Icons, loopAnObject } from "../utils";
 
 const Home = ({
   stats,
@@ -18,6 +19,35 @@ const Home = ({
   toastType,
   setToastType,
 }) => {
+  //functions
+
+  //get average either of weight or height
+  const getSum = (array, value, measure) => {
+    let sumValue = 0;
+    array
+      .map((element) => element.appearance[value][1])
+      .map((element2) => (sumValue += parseInt(element2.replace(measure, ""))));
+    return Math.floor(sumValue / array.length);
+  };
+
+  //states
+  const [maxStat, setMaxStat] = useState([]);
+  let maxValue = Math.max(...Object.values(stats).map((value) => value));
+
+  //Turning stats into an array in order to iterate it
+  let statsArray = Object.keys(stats).map((keyName) => ({
+    [keyName]: stats[keyName],
+  }));
+
+  let higherStat = statsArray.filter(
+    (value) =>
+      Object.values(value)[0] === maxValue && Object.values(value)[0] !== 0
+  );
+
+  useEffect(() => {
+    setMaxStat(higherStat);
+  }, [stats]);
+
   return (
     <HomeStyled>
       {teamHero.length === 0 ? (
@@ -27,6 +57,52 @@ const Home = ({
         </h3>
       ) : (
         <>
+          <div className="resume">
+            <div className="averages">
+              <div className="kind-of-team">
+                <div className="title">
+                  <p>Team profile</p>
+                </div>
+                <div className="team-profile">
+                  {maxStat.map((stat) =>
+                    Object.keys(stat).map((keyName) => (
+                      <Stat
+                        className={keyName}
+                        icon={Icons[keyName]}
+                        key={keyName}
+                      >
+                        <small>{keyName}</small>
+                      </Stat>
+                    ))
+                  )}
+
+                  {/* <i className="fas fa-balance-scale"></i>
+                  <p>veremos</p> */}
+                </div>
+              </div>
+              <div className="points-total">
+                <div className="sum">
+                  <p>Points total</p>
+                  <p>{loopAnObject(stats)}</p>
+                </div>
+                <div className="weight-average">
+                  <p>Weight average</p>
+                  <p>
+                    {getSum(teamHero, "weight", " kg")}
+                    kg
+                  </p>
+                </div>
+                <div className="height-average">
+                  <p>Height average</p>
+                  <p>
+                    {getSum(teamHero, "height", " cm")}
+                    cm
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="powerstats-sorted"></div>
+          </div>
           <div className="home-cards">
             <div className="header-highest">
               <h3 className="heading-highest">Highest heroes</h3>
@@ -114,24 +190,6 @@ const Home = ({
                 )
               )}
             </div>
-
-            {/* {teamHero.map((hero) =>
-              hero.points > 300 ? (
-                <HeroCard
-                  hero={hero}
-                  teamHero={teamHero}
-                  setTeamHero={setTeamHero}
-                  className="hero-added"
-                  iconInfo="fas fa-info-circle"
-                  isFull={isFull}
-                  setIsFull={setIsFull}
-                  rating={rating}
-                  setRating={setRating}
-                />
-              ) : (
-                ""
-              )
-            )} */}
           </div>
           <div className="home-info">
             {/* {Object.values(stats).map((stat) => (
@@ -147,6 +205,7 @@ const HomeStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 85vw;
   margin-bottom: 3rem;
   h3 {
@@ -154,6 +213,88 @@ const HomeStyled = styled.div`
     a {
       text-decoration: none;
       color: tomato;
+    }
+  }
+  div.resume {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    height: 35vh;
+    margin-bottom: 5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    p {
+      font-size: 0.7rem;
+    }
+    div.averages {
+      width: 50%;
+      background-color: #ebeae8;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0.3rem;
+      div {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 50%;
+      }
+      div.kind-of-team {
+        border-bottom: solid 1px #e0e0e0;
+        display: flex;
+        flex-direction: row;
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+        }
+        div.title {
+          width: 30%;
+          p {
+            font-size: 0.7rem;
+          }
+        }
+        div.team-profile {
+          width: 70%;
+          display: flex;
+          flex-direction: row;
+          div {
+            svg {
+              color: tomato !important;
+              font-size: 1rem;
+              margin-bottom: 0.5em;
+            }
+            small {
+              font-size: 0.7rem !important;
+            }
+          }
+        }
+      }
+      div.points-total {
+        width: 100%;
+        padding: 0.3rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        div {
+          width: 33%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+    div.powerstats-sorted {
+      width: 50%;
+
+      background-color: orange;
     }
   }
   div.header-highest,
