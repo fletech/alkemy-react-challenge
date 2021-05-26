@@ -5,8 +5,10 @@ const Toast = ({ toast, toastType }) => {
   let icon =
     toastType.type === "success"
       ? "fas fa-check-circle"
-      : toastType.type === "aware" || "info"
+      : toastType.type === "aware" || toastType.type === "info"
       ? "fas fa-exclamation-circle"
+      : toastType.type === "login"
+      ? "fas fa-circle-notch"
       : "fas fa-trash-alt";
   return (
     toast && (
@@ -60,7 +62,8 @@ const ToastStyled = styled.div`
   &.success,
   &.deleted,
   &.aware,
-  &.info {
+  &.info,
+  &.login {
     opacity: 1;
   }
   &.success {
@@ -72,8 +75,23 @@ const ToastStyled = styled.div`
   &.deleted {
     background-color: #e43636;
   }
-  &.info {
+  &.info,
+  &.login {
     background-color: dodgerblue;
+  }
+
+  &.login {
+    i {
+      animation: spin 0.5s infinite;
+    }
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(10deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 export default Toast;

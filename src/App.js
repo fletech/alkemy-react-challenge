@@ -22,6 +22,7 @@ import Aside from "./components/Aside";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Toast from "./components/Toast";
+import Nav from "./components/Nav";
 
 ///RENDER///
 function App({ token }) {
@@ -204,6 +205,12 @@ function App({ token }) {
           </Switch>
         </SectionStyled>
       </MainStyled>
+      <Nav
+        className="nav-as-footer"
+        isLogged={isLogged}
+        setIsLogged={setIsLogged}
+        teamHero={teamHero}
+      />
       <Footer />
     </div>
   );

@@ -69,62 +69,70 @@ const Login = ({
     if (submitted) {
       setToast(true);
       setToastType({
-        type: "info",
+        type: "login",
         message: "Logging-in",
       });
     }
   }, [submitted]);
 
   return (
-    <Formik
-      initialValues={{
-        email: "",
-        password: "",
-      }}
-      validationSchema={validate}
-      onSubmit={(values) => loginHandler(values)}
-    >
-      {(formik) => (
-        <>
-          <FormContainer>
-            <h1>Log in</h1>
-            <Form className="form-login">
-              <div>
-                <InputField
-                  type={"text"}
-                  label={"Email"}
-                  name={"email"}
-                ></InputField>
-                <InputField
-                  type={"password"}
-                  label={"Password"}
-                  name={"password"}
-                ></InputField>
-                <div className="buttons">
-                  <button type="submit" className="btn-login">
-                    Log in
-                  </button>
-                  <button type="reset" className="btn-clear">
-                    Clear
-                  </button>
+    <LoginStyled>
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+        }}
+        validationSchema={validate}
+        onSubmit={(values) => loginHandler(values)}
+      >
+        {(formik) => (
+          <>
+            <FormContainer>
+              <h1>Log in</h1>
+              <Form className="form-login">
+                <div>
+                  <InputField
+                    type={"text"}
+                    label={"Email"}
+                    name={"email"}
+                  ></InputField>
+                  <InputField
+                    type={"password"}
+                    label={"Password"}
+                    name={"password"}
+                  ></InputField>
+                  <div className="buttons">
+                    <button type="submit" className="btn-login">
+                      Log in
+                    </button>
+                    <button type="reset" className="btn-clear">
+                      Clear
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </Form>
-          </FormContainer>
-        </>
-      )}
-    </Formik>
+              </Form>
+            </FormContainer>
+          </>
+        )}
+      </Formik>
+    </LoginStyled>
   );
 };
-
+const LoginStyled = styled.div`
+  min-height: 90vh;
+`;
 const FormContainer = styled.div`
   border: solid 1px #ececec;
   border-radius: 2rem;
-  width: 30%;
+  width: 40%;
   padding: 2rem;
-  min-width: 250px;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
+  @media (max-width: 650px) {
+    width: 50%;
+  }
+
   &:focus {
     box-shadow: 2px 2px 8px #474747;
   }

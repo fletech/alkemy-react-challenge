@@ -52,7 +52,7 @@ const Home = ({
     <HomeStyled>
       {teamHero.length === 0 ? (
         <h3 className="home-heading">
-          You have not added any hero yet. To seek for one{" "}
+          You have not added any hero yet. To find one{" "}
           <Link to="/search">click here!</Link>
         </h3>
       ) : (
@@ -72,6 +72,7 @@ const Home = ({
                         key={keyName}
                       >
                         <small>{keyName}</small>
+                        <small className="points">{stat[keyName]} points</small>
                       </Stat>
                     ))
                   )}
@@ -82,19 +83,19 @@ const Home = ({
               </div>
               <div className="points-total">
                 <div className="sum">
-                  <p>Points total</p>
-                  <p>{loopAnObject(stats)}</p>
+                  <p className="bold">Total points</p>
+                  <p className="highlight">{loopAnObject(stats)}</p>
                 </div>
                 <div className="weight-average">
-                  <p>Weight average</p>
-                  <p>
+                  <p className="bold">Average weight</p>
+                  <p className="highlight">
                     {`${getSum(teamHero, "weight", " kg")} `}
                     kg
                   </p>
                 </div>
                 <div className="height-average">
-                  <p>Height average</p>
-                  <p>
+                  <p className="bold">Average height</p>
+                  <p className="highlight">
                     {getSum(teamHero, "height", " cm")}
                     cm
                   </p>
@@ -208,11 +209,14 @@ const HomeStyled = styled.div`
   width: 85vw;
   height: 100%;
   h3 {
+    width: 60%;
+    text-align: center;
     a {
       text-decoration: none;
       color: tomato;
     }
   }
+
   div.resume {
     width: 60%;
     display: flex;
@@ -220,7 +224,7 @@ const HomeStyled = styled.div`
     flex-direction: column;
     margin-bottom: 3rem;
     border-radius: 10px;
-    border: solid 1px #dbdbdb;
+    border: solid 2px #c0bfbf;
     overflow: hidden;
 
     p {
@@ -233,7 +237,7 @@ const HomeStyled = styled.div`
       justify-content: center;
       flex-direction: column;
       padding: 0.3rem;
-      height: 20vh;
+      height: 25vh;
       div {
         display: flex;
         align-items: flex-start;
@@ -243,11 +247,11 @@ const HomeStyled = styled.div`
       }
       div.kind-of-team {
         background-color: #dfdfdf;
-        border-radius: 10px;
+        border-radius: 6px;
         border-bottom: solid 1px #e0e0e0;
         display: flex;
         flex-direction: row;
-        height: 40%;
+        height: 50%;
         justify-content: space-evenly;
         div {
           display: flex;
@@ -260,21 +264,26 @@ const HomeStyled = styled.div`
           width: 33%;
           padding-left: 2rem;
           p {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
+            font-weight: bold;
           }
         }
         div.team-profile {
-          width: 66%;
+          width: 67%;
           display: flex;
           flex-direction: row;
           div {
             svg {
               color: tomato !important;
-              font-size: 1rem;
-              margin-bottom: 0.5em;
+              font-size: 1.3rem;
+              margin-bottom: 0.3em;
             }
             small {
-              font-size: 0.7rem !important;
+              font-size: 0.9rem !important;
+            }
+            small.points {
+              font-size: 0.6rem !important;
+              margin-top: 0.5rem;
             }
           }
         }
@@ -298,6 +307,13 @@ const HomeStyled = styled.div`
           justify-content: space-evenly;
           p {
             text-align: center;
+          }
+          p.bold {
+            font-weight: bold;
+          }
+          p.highlight {
+            color: tomato;
+            font-size: 1.2rem;
           }
         }
         div.weight-average {
@@ -362,6 +378,11 @@ const HomeStyled = styled.div`
   }
   @media (max-width: 500px) {
     width: 95vw;
+    h3.home-heading {
+      color: #474747;
+      width: 60%;
+      text-align: center;
+    }
     div.resume {
       width: 80%;
     }

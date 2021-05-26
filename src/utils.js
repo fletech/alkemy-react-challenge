@@ -61,7 +61,7 @@ export const addRemove = ({
     console.log("deleted");
     points > 300 ? (newRating.highest -= 1) : (newRating.lowest -= 1);
     setRating(newRating);
-    toastHandler("deleted", "Hero deleted", "tomato");
+    toastHandler("deleted", "Hero deleted");
     return setTeamHero(teamHero.filter((hero) => hero.id !== idClicked));
   }
   //
@@ -76,11 +76,11 @@ export const addRemove = ({
       if (rating.highest < 3) {
         newRating.highest += 1;
 
-        toastHandler("success", `Hero added to the highest-team`, "green");
+        toastHandler("success", `Hero added to the highest-team`);
         setRating(newRating);
         return setTeamHero([...teamHero, heroClicked]);
       } else {
-        toastHandler("aware", `The highest-team is full 😕.`, "gold");
+        toastHandler("aware", `The highest-team is full 😕.`);
       }
     } else {
       if (rating.lowest < 3) {

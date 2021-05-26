@@ -22,7 +22,7 @@ const Aside = ({
   return (
     <AsideStyled className={`${!isLogged || toggleAside ? "hidden" : ""}`}>
       <div className="aside-header">
-        {isLogged && (
+        {isLogged && teamHero.length !== 0 && (
           <div
             onClick={() => setToggleAside(!toggleAside)}
             className={`${
@@ -86,6 +86,12 @@ const AsideStyled = styled.aside`
   &.hidden,
   &.toggle-hidden {
     transform: translateX(-100%);
+  }
+
+  @media (max-width: 650px) {
+    &.hidden {
+      transform: translateX(-105%);
+    }
   }
   box-shadow: 2px 0px 10px #acacac;
 

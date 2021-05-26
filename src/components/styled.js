@@ -10,6 +10,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   padding: 0 5vw;
   z-index: 10;
+  box-shadow: 1px 1px 10px #f7f7f7;
   @media (max-height: 600px) {
     height: 15vh;
     margin-bottom: 3rem;
@@ -43,9 +44,18 @@ export const FooterStyled = styled.footer`
   a {
     margin: 0 0.5rem;
     text-decoration: none;
-    color: dodgerblue;
+    color: #fc5639;
+    font-weight: bold;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 650px) {
     position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 1rem 0;
+    margin-bottom: 7vh;
+    a {
+      margin: 0.2rem 0rem;
+    }
   }
 `;

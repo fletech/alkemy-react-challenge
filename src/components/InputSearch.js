@@ -66,22 +66,6 @@ const InputSearch = ({
       });
   };
 
-  //let elem = document.querySelector(".input-search");
-  //Grab mouseEvent by firing "click" which wouldn't work, but will give the event
-  //  let event;
-  //  likeBtn.onclick = (e) => {
-  //    event = Object.assign({}, e);
-  //    event.isTrusted = true; //This is key - React will terminate the event if !isTrusted
-  //  };
-  //elem.click();
-  //  setTimeout(() => {
-  //    for (key in elem) {
-  //      if (key.startsWith("__reactEventHandlers")) {
-  //        elem[key].onClick(event);
-  //      }
-  //    }
-  //  }, 1000);
-
   useEffect(() => {
     let elem = document.querySelector(".input-search");
     elem.click();
@@ -163,8 +147,10 @@ const InputStyled = styled.div`
   border-bottom: solid 1px #181818;
   width: 350px;
   height: 2rem;
-  min-width: 200px;
   position: relative;
+  @media (max-width: 650px) {
+    width: auto;
+  }
   &.focus {
     border-bottom: solid 2px tomato;
   }

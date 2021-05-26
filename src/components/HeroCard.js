@@ -105,8 +105,8 @@ const Hero = styled.div`
       cursor: pointer;
     }
   }
-  &.hero-to-add {
-    cursor: pointer;
+  &.hero-to-add:hover {
+    box-shadow: 1px 1px 8px #cccccc, -1px -1px 8px #cccccc;
   }
   a {
     text-decoration: none;
