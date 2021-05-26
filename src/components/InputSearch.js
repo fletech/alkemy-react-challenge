@@ -149,7 +149,7 @@ const InputStyled = styled.div`
   height: 2rem;
   position: relative;
   @media (max-width: 650px) {
-    width: auto;
+    min-width: 200px;
   }
   &.focus {
     border-bottom: solid 2px tomato;
@@ -172,6 +172,10 @@ const InputStyled = styled.div`
     outline: none;
     padding-left: 0.3rem;
     padding-right: 1rem;
+    font-size: 16px;
+    @media (max-width: 650px) {
+      font-size: 16px !important;
+    }
   }
   div.predictions {
     position: absolute;

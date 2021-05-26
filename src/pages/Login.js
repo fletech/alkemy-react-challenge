@@ -151,12 +151,15 @@ const FormContainer = styled.div`
     input {
       color: grey;
       height: 2rem;
-      font-size: 1rem;
+      font-size: 16px;
       border: none;
       border-bottom: solid 1px grey;
       &:focus {
         outline: none;
         border-bottom: solid 2px tomato;
+      }
+      @media (max-width: 650px) {
+        font-size: 16px !important;
       }
     }
 
