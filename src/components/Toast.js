@@ -83,6 +83,7 @@ const ToastStyled = styled.div`
   &.login {
     i {
       animation: spin 0.5s infinite;
+      font-size: 2rem;
     }
   }
   @keyframes spin {

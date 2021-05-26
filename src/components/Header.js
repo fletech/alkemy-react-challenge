@@ -136,6 +136,8 @@ const DivStyled = styled.div`
   }
   @media (max-width: 650px) {
     section {
+      height: 80%;
+      border-radius: 4rem;
       div.stat-rate {
         margin: 0 0.3rem;
       }

@@ -222,7 +222,7 @@ const HomeStyled = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    margin-bottom: 3rem;
+    margin: 3rem 0;
     border-radius: 10px;
     border: solid 2px #c0bfbf;
     overflow: hidden;

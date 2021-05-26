@@ -111,6 +111,7 @@ const NavStyled = styled.div`
           align-items: center;
           width: 33%;
           margin-left: 0;
+          font-size: 1.4rem;
           i {
             color: white;
           }
@@ -120,6 +121,7 @@ const NavStyled = styled.div`
           div.bubble {
             right: 50%;
             transform: translateX(150%);
+            font-size: 1rem;
           }
         }
       }

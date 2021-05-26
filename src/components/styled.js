@@ -12,7 +12,7 @@ export const HeaderStyled = styled.header`
   z-index: 10;
   box-shadow: 1px 1px 10px #f7f7f7;
   @media (max-height: 600px) {
-    height: 15vh;
+    height: 10vh;
     margin-bottom: 3rem;
   }
 `;
