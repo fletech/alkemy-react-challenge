@@ -44,7 +44,9 @@ const Search = ({
 
         {searchValue.length !== 0 ? (
           resultNull ? (
-            <p className="search-message">No founds</p>
+            <p className="search-message">
+              No results found for your search 😕
+            </p>
           ) : (
             ""
           )
@@ -70,7 +72,7 @@ const Search = ({
   );
 };
 const SearchStyled = styled.div`
-  min-height: 90vh;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,6 +96,10 @@ const SearchStyled = styled.div`
       border-radius: 2rem;
       padding: 0.3rem 0.5rem;
       margin: 2rem 0;
+      @media (max-width: 500px) {
+        min-width: 200px;
+        width: 80%;
+      }
     }
     p.search-message {
       color: tomato;

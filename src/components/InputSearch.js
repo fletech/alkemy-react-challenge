@@ -163,7 +163,7 @@ const InputStyled = styled.div`
   border-bottom: solid 1px #181818;
   width: 350px;
   height: 2rem;
-  min-width: 300px;
+  min-width: 200px;
   position: relative;
   &.focus {
     border-bottom: solid 2px tomato;

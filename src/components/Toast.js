@@ -24,7 +24,8 @@ const ToastStyled = styled.div`
   pointer-events: none;
   position: fixed;
   top: 15vh;
-  right: 5rem;
+  right: 50%;
+  transform: translateX(50%);
   z-index: 1000;
   width: auto;
   height: 50px;
@@ -35,6 +36,7 @@ const ToastStyled = styled.div`
   border-radius: 25px;
   box-shadow: 1px 1px 10px #888888;
   padding: 1rem;
+
   div.message {
     position: relative;
     display: flex;

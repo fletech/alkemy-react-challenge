@@ -123,8 +123,7 @@ const AsideStyled = styled.aside`
       z-index: 200;
       cursor: pointer;
       transition: right width 1s ease-in-out;
-      @media (max-width: 500px) {
-      }
+
       &.on {
         right: 0rem;
         width: 1.5rem;
@@ -144,6 +143,9 @@ const AsideStyled = styled.aside`
       ${shadowSpin}
     }
   }
+  @media (max-height: 500px) {
+    display: none;
+  }
 `;
 const DivHero = styled.div`
   height: 100%;
@@ -160,6 +162,9 @@ const DivHero = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-height: 650px) {
+      height: 1.5rem;
+    }
 
     div.hero-info {
       display: flex;
@@ -186,6 +191,10 @@ const DivHero = styled.div`
       width: 50px;
       height: 50px;
       border-radius: 50%;
+      @media (max-height: 650px) {
+        width: 30px;
+        height: 30px;
+      }
     }
     .selected-breathe {
       ${breathe};

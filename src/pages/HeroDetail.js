@@ -275,6 +275,10 @@ const HeroCardStyled = styled(HeroCard)`
         width: 120px;
         height: 120px;
         border-radius: 10%;
+        @media (max-width: 500px) {
+          width: 80px;
+          height: 80px;
+        }
       }
       &.average {
         display: flex;
@@ -287,6 +291,9 @@ const HeroCardStyled = styled(HeroCard)`
         border-radius: 50%;
         margin-right: 1rem;
         font-weight: bold;
+        @media (max-width: 500px) {
+          margin-right: 0;
+        }
       }
     }
   }
@@ -300,7 +307,7 @@ const HeroCardStyled = styled(HeroCard)`
     border-radius: 2rem;
   }
   @media (max-width: 500px) {
-    width: 350px;
+    width: 80%;
   }
 `;
 const ChildrenStyled = styled.div`
@@ -382,3 +389,25 @@ const ChildrenStyled = styled.div`
   }
 `;
 export default HeroDetail;
+
+{
+  /* <div className="stat-field">
+  <div className="range">
+    <div
+      className="value"
+      style={{
+        width:
+          currentHero.powerstats.intelligence !== "null"
+            ? `${parseInt(currentHero.powerstats.intelligence)}%`
+            : "0",
+      }}
+    ></div>
+  </div>
+  <small>
+    Intelligence:
+    {currentHero.powerstats.intelligence !== "null"
+      ? parseInt(currentHero.powerstats.intelligence)
+      : "0"}
+  </small>
+</div>; */
+}

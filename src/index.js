@@ -10,7 +10,6 @@ let token = localStorage.getItem("TOKEN_LOGIN") !== null ? true : false;
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      {(document.title = "Super hero")}
       <App token={token} />
     </BrowserRouter>
   </React.StrictMode>,

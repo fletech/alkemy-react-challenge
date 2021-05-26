@@ -128,7 +128,7 @@ const DivStyled = styled.div`
   }
   div.button-backward {
     position: absolute;
-    left: -3rem;
+    left: -2rem;
     button {
       display: flex;
       align-items: center;
@@ -140,6 +140,12 @@ const DivStyled = styled.div`
         color: tomato;
         font-size: 1rem;
       }
+    }
+    @media (max-width: 800px) {
+      left: -1.5rem;
+    }
+    @media (max-width: 650px) {
+      display: none;
     }
   }
 `;

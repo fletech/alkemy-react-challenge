@@ -88,7 +88,7 @@ const Home = ({
                 <div className="weight-average">
                   <p>Weight average</p>
                   <p>
-                    {getSum(teamHero, "weight", " kg")}
+                    {`${getSum(teamHero, "weight", " kg")} `}
                     kg
                   </p>
                 </div>
@@ -101,7 +101,6 @@ const Home = ({
                 </div>
               </div>
             </div>
-            <div className="powerstats-sorted"></div>
           </div>
           <div className="home-cards">
             <div className="header-highest">
@@ -207,9 +206,8 @@ const HomeStyled = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 85vw;
-  margin-bottom: 3rem;
+  height: 100%;
   h3 {
-    justify-self: center;
     a {
       text-decoration: none;
       color: tomato;
@@ -219,33 +217,38 @@ const HomeStyled = styled.div`
     width: 60%;
     display: flex;
     justify-content: space-between;
-    height: 35vh;
-    margin-bottom: 5rem;
+    flex-direction: column;
+    margin-bottom: 3rem;
     border-radius: 10px;
+    border: solid 1px #dbdbdb;
     overflow: hidden;
+
     p {
       font-size: 0.7rem;
     }
     div.averages {
-      width: 50%;
-      background-color: #ebeae8;
+      width: 100%;
       display: flex;
       align-items: flex-start;
       justify-content: center;
       flex-direction: column;
       padding: 0.3rem;
+      height: 20vh;
       div {
         display: flex;
         align-items: flex-start;
         justify-content: center;
         flex-direction: column;
         width: 100%;
-        height: 50%;
       }
       div.kind-of-team {
+        background-color: #dfdfdf;
+        border-radius: 10px;
         border-bottom: solid 1px #e0e0e0;
         display: flex;
         flex-direction: row;
+        height: 40%;
+        justify-content: space-evenly;
         div {
           display: flex;
           flex-direction: column;
@@ -254,13 +257,14 @@ const HomeStyled = styled.div`
           height: 100%;
         }
         div.title {
-          width: 30%;
+          width: 33%;
+          padding-left: 2rem;
           p {
             font-size: 0.7rem;
           }
         }
         div.team-profile {
-          width: 70%;
+          width: 66%;
           display: flex;
           flex-direction: row;
           div {
@@ -277,6 +281,8 @@ const HomeStyled = styled.div`
       }
       div.points-total {
         width: 100%;
+        height: 60%;
+
         padding: 0.3rem;
         display: flex;
         flex-direction: row;
@@ -284,17 +290,21 @@ const HomeStyled = styled.div`
         justify-content: center;
         div {
           width: 33%;
+          height: 100%;
           display: flex;
           flex-direction: column;
-          align-items: center;
           justify-content: center;
+          align-items: center;
+          justify-content: space-evenly;
+          p {
+            text-align: center;
+          }
+        }
+        div.weight-average {
+          border-right: solid 1px #e0e0e0;
+          border-left: solid 1px #e0e0e0;
         }
       }
-    }
-    div.powerstats-sorted {
-      width: 50%;
-
-      background-color: orange;
     }
   }
   div.header-highest,
@@ -324,6 +334,7 @@ const HomeStyled = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-bottom: 5rem;
     h3 {
       display: flex;
       align-items: center;
@@ -349,10 +360,19 @@ const HomeStyled = styled.div`
       }
     }
   }
-  div.home-info {
+  @media (max-width: 500px) {
+    width: 95vw;
+    div.resume {
+      width: 80%;
+    }
+    div.home-cards {
+      width: 80%;
+    }
+  }
+  /* div.home-info {
     width: 0%;
     height: 100%;
     min-height: 50vh;
-  }
+  } */
 `;
 export default Home;
