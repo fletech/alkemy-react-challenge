@@ -65,6 +65,7 @@ const ToastStyled = styled.div`
   &.info,
   &.login {
     opacity: 1;
+    animation: shake 0.3s ease-in;
   }
   &.success {
     background-color: #4a8b1e;
@@ -92,6 +93,23 @@ const ToastStyled = styled.div`
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+  @keyframes shake {
+    0% {
+      transform: translateX(45%);
+    }
+    25% {
+      transform: translateX(55%);
+    }
+    50% {
+      transform: translateX(45%);
+    }
+    75% {
+      transform: translateX(55%);
+    }
+    100% {
+      transform: translateX(50%);
     }
   }
 `;

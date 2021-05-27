@@ -74,19 +74,6 @@ function App({ token }) {
       teamHero.map((hero) => (newStats[key] += parseInt(hero.powerstats[key])))
     );
     setStats(newStats);
-    // let points = loopAnObject(newStats);
-    // let team = points > 300 ? "Highest-rating" : "Lowest-rating";
-    // setToast(true);
-    // setToastType({
-    //   type: "success",
-    //   message: `Hero added to ${team} team`,
-    //   backgroundColor: "green",
-    // });
-    // setTimeout(() => {
-    //   console.log(toast);
-    //   setToast(false);
-    //   setToastType({});
-    // }, 4000);
   }, [teamHero]);
 
   //Handlers:
