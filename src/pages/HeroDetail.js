@@ -255,19 +255,22 @@ const HeroCardStyled = styled(HeroCard)`
   margin-bottom: 10rem;
   border: double 1px #202020;
   box-shadow: 1px 1px 8px #eeab5e;
-
-  i.fas,
-  i.far {
-    color: #fdfafd;
-    font-size: 0.8rem;
-    background-color: #eeab5e;
+  button {
     width: 2rem;
     height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #eeab5e;
     border-radius: 50%;
+    i.fas,
+    i.far {
+      color: #fdfafd;
+      font-size: 0.9rem !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2px;
+    }
   }
+
   div.header {
     div {
       width: 50%;
@@ -389,25 +392,3 @@ const ChildrenStyled = styled.div`
   }
 `;
 export default HeroDetail;
-
-{
-  /* <div className="stat-field">
-  <div className="range">
-    <div
-      className="value"
-      style={{
-        width:
-          currentHero.powerstats.intelligence !== "null"
-            ? `${parseInt(currentHero.powerstats.intelligence)}%`
-            : "0",
-      }}
-    ></div>
-  </div>
-  <small>
-    Intelligence:
-    {currentHero.powerstats.intelligence !== "null"
-      ? parseInt(currentHero.powerstats.intelligence)
-      : "0"}
-  </small>
-</div>; */
-}

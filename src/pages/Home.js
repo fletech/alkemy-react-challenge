@@ -121,8 +121,8 @@ const Home = ({
             <div className="highest-cards">
               {rating.highest === 0 && (
                 <small>
-                  You have not added any highest-rating hero yet. To seek for
-                  one <Link to="/search">click here!</Link>
+                  You have not added any highest-rating hero yet. To find one{" "}
+                  <Link to="/search">click here!</Link>
                 </small>
               )}
               {teamHero.map((hero) =>
@@ -164,7 +164,7 @@ const Home = ({
             <div className="lowest-cards">
               {rating.lowest === 0 && (
                 <small>
-                  You have not added any lowest-rating hero yet. To seek for one{" "}
+                  You have not added any lowest-rating hero yet. To find one{" "}
                   <Link to="/search">click here!</Link>
                 </small>
               )}

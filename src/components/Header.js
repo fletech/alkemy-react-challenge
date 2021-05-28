@@ -78,10 +78,10 @@ const DivStyled = styled.div`
   section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: #e2e2e2;
-    height: 3rem;
+    height: 85%;
     width: 90%;
     border-radius: 2rem;
     div.stat-heading {

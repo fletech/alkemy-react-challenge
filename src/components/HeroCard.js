@@ -109,8 +109,6 @@ const Hero = styled.div`
     box-shadow: 1px 1px 8px #cccccc, -1px -1px 8px #cccccc;
   }
   a {
-    text-decoration: none;
-    color: #474747;
   }
   h3.name {
     font-weight: bold;
@@ -119,12 +117,24 @@ const Hero = styled.div`
     display: flex;
     align-items: center;
     margin-top: 1rem;
+    height: auto;
   }
   button {
     background: none;
     border: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     i {
       pointer-events: none;
+      font-size: 1.3rem !important;
+      margin-top: 2px;
+    }
+    @media (max-width: 500px) {
+      i {
+        font-size: 80%;
+      }
     }
     &.disabled {
       color: grey;
@@ -137,9 +147,13 @@ const Hero = styled.div`
   }
   //Link as "a"
   a {
-    margin-left: 10px;
+    height: 100%;
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #474747;
     i {
-      color: #474747;
+      margin-top: 2px;
+      font-size: 1.5rem !important;
     }
   }
 `;
