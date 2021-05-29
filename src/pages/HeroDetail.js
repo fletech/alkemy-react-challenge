@@ -6,6 +6,7 @@ import { url } from "../utils";
 //Components
 import HeroCard from "../components/HeroCard";
 import styled from "styled-components";
+import StatField from "../components/StatField";
 
 const HeroDetail = ({
   isFull,
@@ -66,7 +67,7 @@ const HeroDetail = ({
                 </div>
 
                 <div className="appearance">
-                  <div className="w-h">
+                  <div className="weight-height">
                     <small>
                       <span>Weight: </span>
                       {currentHero.appearance.weight !== "null"
@@ -110,135 +111,12 @@ const HeroDetail = ({
               </div>
 
               <div className="powerstats">
-                <div className="left">
-                  {/* Field */}
-                  <div className="stat-field">
-                    <div className="range">
-                      <div
-                        className="value"
-                        style={{
-                          width:
-                            currentHero.powerstats.intelligence !== "null"
-                              ? `${parseInt(
-                                  currentHero.powerstats.intelligence
-                                )}%`
-                              : "0",
-                        }}
-                      ></div>
-                    </div>
-                    <small>
-                      Intelligence:
-                      {currentHero.powerstats.intelligence !== "null"
-                        ? parseInt(currentHero.powerstats.intelligence)
-                        : "0"}
-                    </small>
-                  </div>
-
-                  {/* Field */}
-                  <div className="stat-field">
-                    <div className="range">
-                      <div
-                        className="value"
-                        style={{
-                          width:
-                            currentHero.powerstats.combat !== "null"
-                              ? `${parseInt(currentHero.powerstats.combat)}%`
-                              : "0",
-                        }}
-                      ></div>
-                    </div>
-                    <small>
-                      Combat:
-                      {currentHero.powerstats.combat !== "null"
-                        ? parseInt(currentHero.powerstats.combat)
-                        : "0"}
-                    </small>
-                  </div>
-                  {/* Field */}
-                  <div className="stat-field">
-                    <div className="range">
-                      <div
-                        className="value"
-                        style={{
-                          width:
-                            currentHero.powerstats.power !== "null"
-                              ? `${parseInt(currentHero.powerstats.power)}%`
-                              : "0",
-                        }}
-                      ></div>
-                    </div>
-                    <small>
-                      Power:
-                      {currentHero.powerstats.power !== "null"
-                        ? parseInt(currentHero.powerstats.power)
-                        : "0"}
-                    </small>
-                  </div>
-                </div>
-                <div className="right">
-                  {/* Field */}
-                  <div className="stat-field">
-                    <div className="range">
-                      <div
-                        className="value"
-                        style={{
-                          width:
-                            currentHero.powerstats.speed !== "null"
-                              ? `${parseInt(currentHero.powerstats.speed)}%`
-                              : "0",
-                        }}
-                      ></div>
-                    </div>
-                    <small>
-                      Speed:
-                      {currentHero.powerstats.speed !== "null"
-                        ? parseInt(currentHero.powerstats.speed)
-                        : "0"}
-                    </small>
-                  </div>
-                  {/* Field */}
-                  <div className="stat-field">
-                    <div className="range">
-                      <div
-                        className="value"
-                        style={{
-                          width:
-                            currentHero.powerstats.strength !== "null"
-                              ? `${parseInt(currentHero.powerstats.strength)}%`
-                              : "0",
-                        }}
-                      ></div>
-                    </div>
-                    <small>
-                      Strength:
-                      {currentHero.powerstats.strength !== "null"
-                        ? parseInt(currentHero.powerstats.strength)
-                        : "0"}
-                    </small>
-                  </div>
-                  {/* Field */}
-                  <div className="stat-field">
-                    <div className="range">
-                      <div
-                        className="value"
-                        style={{
-                          width:
-                            currentHero.powerstats.durability !== "null"
-                              ? `${parseInt(
-                                  currentHero.powerstats.durability
-                                )}%`
-                              : "0",
-                        }}
-                      ></div>
-                    </div>
-                    <small>
-                      Durability:
-                      {currentHero.powerstats.durability !== "null"
-                        ? parseInt(currentHero.powerstats.durability)
-                        : "0"}
-                    </small>
-                  </div>
-                </div>
+                {Object.keys(currentHero.powerstats).map((keyName) => (
+                  <StatField
+                    powerstats={currentHero.powerstats}
+                    powerstatName={keyName}
+                  />
+                ))}
               </div>
             </ChildrenStyled>
           </HeroCardStyled>
@@ -325,14 +203,12 @@ const ChildrenStyled = styled.div`
       align-items: center;
       border-bottom: solid 0.1rem #eeab5e;
       div.hair-eyes,
-      div.w-h {
+      div.weight-height {
         width: 47%;
         display: flex;
         flex-direction: column;
-
         small {
           font-size: 0.8rem;
-
           padding: 0.5rem 0;
           span {
             font-weight: bold;
@@ -358,34 +234,34 @@ const ChildrenStyled = styled.div`
     border-radius: 1rem;
     padding: 0.7rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    max-height: 30vh;
+    flex-wrap: np-wrap;
     justify-content: space-between;
     width: 100%;
-    div.right,
-    div.left {
-      width: 47%;
-      div.stat-field {
-        width: 100%;
-        overflow: hidden;
-        margin: 0.4rem 0;
-        small {
-          font-size: 0.6rem;
-        }
-        div.range {
-          position: relative;
-          width: 100%;
-          height: 5px;
-          border-radius: 1rem;
-          overflow: hidden;
-          background-color: rgba(44, 44, 44, 0.295);
-          div.value {
-            position: absolute;
-            height: 100%;
-            top: 0;
-            left: 0;
 
-            background-color: #faf766;
-          }
+    div.stat-field {
+      width: 100%;
+      height: 4rem;
+      overflow: hidden;
+      margin: 0.4rem 0;
+      small {
+        font-size: 0.6rem;
+      }
+      div.range {
+        position: relative;
+        width: 100%;
+        height: 5px;
+        border-radius: 1rem;
+        overflow: hidden;
+        background-color: rgba(44, 44, 44, 0.295);
+        div.value {
+          position: absolute;
+          height: 100%;
+          top: 0;
+          left: 0;
+
+          background-color: #faf766;
         }
       }
     }

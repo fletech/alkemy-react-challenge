@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import InputSearch from "../components/InputSearch";
 import SearchResult from "../components/SearchResult";
@@ -81,6 +81,10 @@ const SearchStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 30%;
+    @media (max-width: 650px) {
+      width: 80%;
+    }
     p {
       margin: 1rem 0rem;
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import { HeaderStyled } from "./styled";
 import styled from "styled-components";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Icons } from "../utils";
 
 //Components
@@ -83,7 +83,8 @@ const DivStyled = styled.div`
     background-color: #e2e2e2;
     height: 85%;
     width: 90%;
-    border-radius: 2rem;
+    border-radius: 4rem;
+    border: solid 1px #d3d3d3;
     div.stat-heading {
       p {
         font-size: 0.7rem;

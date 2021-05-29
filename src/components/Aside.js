@@ -104,7 +104,7 @@ const AsideStyled = styled.aside`
   bottom: 5vh;
   width: 12vw;
   min-width: 150px;
-  background-color: rgba(66, 66, 66, 0.911) !important;
+  background-color: rgba(44, 44, 44, 0.952) !important;
   transition: all 0.5s ease-in-out;
   z-index: 3;
   div.aside-header {
@@ -125,7 +125,7 @@ const AsideStyled = styled.aside`
       border-radius: 50%;
       position: absolute;
       top: 0.5rem;
-      right: -3rem;
+      right: -3.5rem;
       z-index: 200;
       cursor: pointer;
       transition: right width 1s ease-in-out;

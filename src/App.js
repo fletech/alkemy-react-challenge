@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 //React-router
 import { Route, Switch, useLocation, Redirect } from "react-router-dom";
 //utils
-import {
-  useStateWithLocalStorage,
-  addRemove,
-  url,
-  loopAnObject,
-} from "./utils";
+import { useStateWithLocalStorage, addRemove, url } from "./utils";
 
 //Pages
 import HeroDetail from "./pages/HeroDetail";
@@ -46,17 +41,7 @@ function App({ token }) {
   const [stats, setStats] = useState({});
   const [toast, setToast] = useState(false);
   const [toastType, setToastType] = useState({});
-  //toastType objecto to be read it when toast is true. {type: "sample", backgroundColor: "sample"}
   const [toggleAside, setToggleAside] = useState(true);
-
-  // const [stats, setStats] = useState({
-  //   // strength: 0,
-  //   // power: 0,
-  //   // speed: 0,
-  //   // intelligence: 0,
-  //   // combat: 0,
-  //   // durability: 0,
-  // });
 
   //Use Effect:
   useEffect(() => {
@@ -201,37 +186,6 @@ function App({ token }) {
       <Footer />
     </div>
   );
-
-  /* {isLogged ? (
-            <Switch location={location} key={location.pathname}>
-              <Route path="/">
-                <Home />
-              </Route>
-
-              <Route path="/search">
-                <Search
-                  isFull={isFull}
-                  setIsFull={setIsFull}
-                  resultSearching={resultSearching}
-                  setResultSearching={setResultSearching}
-                  searchValue={searchValue}
-                  setSearchValue={setSearchValue}
-                  teamHero={teamHero}
-                  setTeamHero={setTeamHero}
-                  url={url}
-                />
-              </Route>
-            </Switch>
-          ) : (
-            <Switch location={location} key={location.pathname}>
-              <Route path="/">
-                <Redirect to="/login" />
-              </Route>
-              <Route path="/login" exact>
-                <Login setIsLogged={setIsLogged} />
-              </Route>
-            </Switch>
-          )} */
 }
 const MainStyled = styled.main`
   display: flex;

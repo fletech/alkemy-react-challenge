@@ -27,9 +27,7 @@ export const addRemove = ({
   setTeamHero,
   rating,
   setRating,
-  toast,
   setToast,
-  toastType,
   setToastType,
 }) => {
   const toastHandler = (type, message) => {
@@ -58,7 +56,6 @@ export const addRemove = ({
 
   // if hero clicked is already in the team then delete it.
   if (teamHero.filter((hero) => hero.id === idClicked).length > 0) {
-    console.log("deleted");
     points > 300 ? (newRating.highest -= 1) : (newRating.lowest -= 1);
     setRating(newRating);
     toastHandler("deleted", "Hero deleted");

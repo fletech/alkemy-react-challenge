@@ -10,7 +10,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   padding: 0 5vw;
   z-index: 10;
-  box-shadow: 1px 1px 10px #f7f7f7;
+  border-bottom: solid 1px #dddcdc;
   @media (max-height: 600px) {
     height: 10vh;
     margin-bottom: 3rem;
@@ -41,6 +41,7 @@ export const FooterStyled = styled.footer`
   position: fixed;
   bottom: 0;
   z-index: 10;
+  border-top: solid 1px #dddcdc;
   a {
     margin: 0 0.5rem;
     text-decoration: none;
