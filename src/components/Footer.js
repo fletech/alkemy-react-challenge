@@ -9,7 +9,13 @@ const Footer = () => {
         {" "}
         Facundo Garcia{" "}
       </a>{" "}
-      <span>to Alkemy React Challenge.</span>
+      <span>
+        to{" "}
+        <a href="https://www.alkemy.org/" target="_blank" rel="noreferrer">
+          Alkemy
+        </a>{" "}
+        React Challenge. ©
+      </span>
     </FooterStyled>
   );
 };
