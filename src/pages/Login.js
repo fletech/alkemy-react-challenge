@@ -17,8 +17,8 @@ const Login = ({
   let history = useHistory();
   const [submitted, setSubmitted] = useState(false);
   const validate = Yup.object({
-    email: Yup.string().email("challenge@superhero.com").required("Required"),
-    password: Yup.string().min(5, "react&&challenge").required("Required"),
+    email: Yup.string().email("challenge@alkemy.org").required("Required"),
+    password: Yup.string().min(5, "react").required("Required"),
   });
   //states
 
@@ -28,8 +28,8 @@ const Login = ({
     try {
       const body = { email: values.email, password: values.password };
       const result = await axios.post(
-        "https://fletapi.herokuapp.com/facundo/api/users",
-        //"http://challenge-react.alkemy.org/",
+        //"https://fletapi.herokuapp.com/facundo/api/users",
+        "http://challenge-react.alkemy.org/",
         body
       );
 
