@@ -20,28 +20,28 @@ const Aside = ({
   setToastType,
 }) => {
   return (
-    <AsideStyled className={`${!isLogged || toggleAside ? "hidden" : ""}`}>
-      <div className="aside-header">
-        {isLogged && teamHero.length !== 0 && (
-          <div
-            onClick={() => setToggleAside(!toggleAside)}
-            className={`${
-              !toggleAside ? "toggle-aside on" : "toggle-aside off"
-            }`}
-          >
-            {toggleAside ? (
-              <i className="fas fa-bars"></i>
-            ) : (
-              <i className="fas fa-times"></i>
-            )}
+    teamHero.length > 0 && (
+      <AsideStyled className={`${!isLogged || toggleAside ? "hidden" : ""}`}>
+        <div className="aside-header">
+          {isLogged && teamHero.length !== 0 && (
+            <div
+              onClick={() => setToggleAside(!toggleAside)}
+              className={`${
+                !toggleAside ? "toggle-aside on" : "toggle-aside off"
+              }`}
+            >
+              {toggleAside ? (
+                <i className="fas fa-bars"></i>
+              ) : (
+                <i className="fas fa-times"></i>
+              )}
+            </div>
+          )}
+          <div className="header-title">
+            <p className="title">My team</p>
           </div>
-        )}
-        <div className="header-title">
-          <p className="title">My team</p>
         </div>
-      </div>
 
-      {teamHero.length > 0 && (
         <DivImageContainer>
           {teamHero.map((hero) => {
             return (
@@ -78,8 +78,8 @@ const Aside = ({
             );
           })}
         </DivImageContainer>
-      )}
-    </AsideStyled>
+      </AsideStyled>
+    )
   );
 };
 const AsideStyled = styled.aside`
