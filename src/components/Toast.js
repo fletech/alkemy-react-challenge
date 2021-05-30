@@ -68,13 +68,13 @@ const ToastStyled = styled.div`
     animation: shake 0.3s ease-in;
   }
   &.success {
-    background-color: #4a8b1e;
+    background-color: #04bd65;
   }
   &.aware {
-    background-color: #d1bf19;
+    background-color: #ffa500;
   }
   &.deleted {
-    background-color: #e43636;
+    background-color: #db4343;
   }
   &.info,
   &.login {
@@ -89,7 +89,7 @@ const ToastStyled = styled.div`
   }
   @keyframes spin {
     0% {
-      transform: rotate(10deg);
+      transform: rotate(0deg);
     }
     100% {
       transform: rotate(360deg);

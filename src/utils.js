@@ -82,11 +82,11 @@ export const addRemove = ({
     } else {
       if (rating.lowest < 3) {
         newRating.lowest += 1;
-        toastHandler("success", `Hero added to the lowest-team`, "green");
+        toastHandler("success", `Hero added to the lowest-team`);
         setRating(newRating);
         return setTeamHero([...teamHero, heroClicked]);
       } else {
-        toastHandler("aware", `The lowest-team is full 😕.`, "gold");
+        toastHandler("aware", `The lowest-team is full 😕.`);
       }
     }
   }
