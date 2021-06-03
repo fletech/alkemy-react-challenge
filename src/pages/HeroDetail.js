@@ -191,6 +191,7 @@ const HeroCardStyled = styled(HeroCard)`
   }
   @media (max-width: 500px) {
     width: 80%;
+    min-width: 0;
   }
 `;
 const ChildrenStyled = styled.div`
