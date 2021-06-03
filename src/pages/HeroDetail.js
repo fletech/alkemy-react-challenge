@@ -128,11 +128,13 @@ const HeroDetail = ({
 const HeroCardStyled = styled(HeroCard)`
   background: linear-gradient(100deg, #ce7a65, #eeab5e);
   padding: 2rem;
-  width: 400px;
+  width: 40%;
+  min-width: 400px;
   color: white;
   margin-bottom: 10rem;
   border: double 1px #202020;
   box-shadow: 1px 1px 8px #eeab5e;
+
   button {
     width: 2rem;
     height: 2rem;
@@ -235,18 +237,22 @@ const ChildrenStyled = styled.div`
     padding: 0.7rem;
     display: flex;
     flex-direction: column;
-    max-height: 30vh;
+    height: auto;
     flex-wrap: np-wrap;
     justify-content: space-between;
     width: 100%;
 
     div.stat-field {
       width: 100%;
-      height: 4rem;
+      height: auto;
       overflow: hidden;
-      margin: 0.4rem 0;
+      padding: 0.8rem 0;
+
       small {
-        font-size: 0.6rem;
+        width: 100%;
+        display: block;
+        margin-top: 0.5rem !important;
+        font-size: 0.8rem;
       }
       div.range {
         position: relative;
