@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
-let token = localStorage.getItem("TOKEN_LOGIN") !== null ? true : false;
+let token = localStorage.getItem("TOKEN_LOGIN") !== null ? true : true;
 
 ReactDOM.render(
   <React.StrictMode>

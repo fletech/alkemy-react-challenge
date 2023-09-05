@@ -79,20 +79,25 @@ const DivStyled = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     background-color: #e2e2e2;
     height: 85%;
-    width: 90%;
-    border-radius: 4rem;
+    width: 80%;
+    border-radius: 0.4rem;
     border: solid 1px #d3d3d3;
+    padding: 0% 10%;
     div.stat-heading {
       p {
-        font-size: 0.7rem;
+        width: 100%;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-align: left;
       }
     }
     div.stats {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
+
       width: 100%;
       div.stat-rate {
         display: flex;
@@ -140,7 +145,7 @@ const DivStyled = styled.div`
       height: 80%;
       border-radius: 4rem;
       div.stat-rate {
-        margin: 0 0.3rem;
+        margin: 0 0.2rem;
       }
     }
   }

@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { ReactComponentElement, useState, useEffect } from "react";
 import Strength from "@material-ui/icons/FitnessCenter";
 import Power from "@material-ui/icons/BatteryChargingFull";
 import Speed from "@material-ui/icons/Speed";
+import PsychologyIcon from "@mui/icons-material/Psychology";
+import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 
-import { ReactComponent as Intelligence } from "./images/brain.svg";
-import { ReactComponent as Combat } from "./images/axe.svg";
-import { ReactComponent as Durability } from "./images/heartbeat.svg";
+// import { ReactComponent as Intelligence } from "./images/brain.svg";
+// import { ReactComponent as Combat } from "./images/axe.svg";
+// import { ReactComponent as Durability } from "./images/heartbeat.svg";
 
 //Custom hook to use when App.js renders.
 export const useStateWithLocalStorage = (localStorageKey, defaultValue) => {
@@ -148,10 +151,10 @@ export const loopAnObject = (object) => {
 
 //Icons - stats
 export const Icons = {
-  intelligence: Intelligence,
-  combat: Combat,
+  intelligence: PsychologyIcon,
+  combat: SportsKabaddiRoundedIcon,
   power: Power,
   speed: Speed,
   strength: Strength,
-  durability: Durability,
+  durability: HealthAndSafetyIcon,
 };

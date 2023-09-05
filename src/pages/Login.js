@@ -16,23 +16,30 @@ const Login = ({
 }) => {
   let history = useHistory();
   const [submitted, setSubmitted] = useState(false);
+  const email_required = "challenge@alkemy.org";
+  const password_required = "react";
   const validate = Yup.object({
-    email: Yup.string().email("challenge@alkemy.org").required("Required"),
-    password: Yup.string().min(5, "react").required("Required"),
+    email: Yup.string()
+      .email(email_required)
+      .required("Required"),
+    password: Yup.string()
+      .min(5, password_required)
+      .required("Required"),
   });
   //states
 
   //handlers
   const loginHandler = async (values) => {
     setSubmitted(true);
-    try {
-      const body = { email: values.email, password: values.password };
-      const result = await axios.post(
-        //"https://fletapi.herokuapp.com/facundo/api/users",
-        "http://challenge-react.alkemy.org/",
-        body
-      );
+    // try {
+    const body = { email: values.email, password: values.password };
+    // const result = await axios.post(
+    //   //"https://fletapi.herokuapp.com/facundo/api/users",
+    //   "http://challenge-react.alkemy.org/",
+    //   body
+    // );
 
+    if (body.email == email_required && body.password == password_required) {
       setToast(false);
       setToastType({});
       setToast(true);
@@ -45,13 +52,16 @@ const Login = ({
         setToastType({});
       }, 4000);
 
-      localStorage.setItem("TOKEN_LOGIN", result.data.token);
+      localStorage.setItem(
+        "TOKEN_LOGIN",
+        "kasjdnb9893278ey9182u3j123981hbner1837h973hr9173f10813rj1mfod012u0098h"
+      );
+      // localStorage.setItem("TOKEN_LOGIN", result.data.token);
       setSubmitted(false);
       setIsLogged(true);
 
       return history.push("/");
-    } catch (err) {
-      console.log(err);
+    } else {
       setToast(true);
       setToastType({
         type: "deleted",
@@ -62,6 +72,17 @@ const Login = ({
         setToastType({});
       }, 3000);
     }
+    // } catch (err) {
+    //   setToast(true);
+    //   setToastType({
+    //     type: "deleted",
+    //     message: "Error. Try again",
+    //   });
+    //   setTimeout(() => {
+    //     setToast(false);
+    //     setToastType({});
+    //   }, 3000);
+    // }
     //
   };
 
