@@ -43,6 +43,13 @@ export const addRemove = ({
       setToast(false);
       setToastType({});
     }, 2000);
+
+    // const timer = setTimeout(() => {
+    //   setToast(false);
+    //   setToastType({});
+    // }, 2000);
+
+    // return () => clearTimeout(timer);
   };
   let idClicked = e.target.dataset.id;
   let heroData = e.target.dataset.hero;
