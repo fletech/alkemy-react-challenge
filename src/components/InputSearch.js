@@ -15,7 +15,7 @@ const InputSearch = ({
   const resultHandler = (e) => {
     e.preventDefault();
     axios
-      .get(`${url}/search/${searchValue}`)
+      .get(`${url}search/${searchValue}`)
       .then((response) => {
         setResultNull(false);
         //console.log(response.data.results);
@@ -24,7 +24,7 @@ const InputSearch = ({
         }
         setResultSearching(response.data.results);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         if (error.response) {
           console.log(error.response);
         } else if (error.request) {
